@@ -1,0 +1,70 @@
+
+/* wud da hail is @media scree */
+/* makes it so it works on mobile */
+/* im doing mobile view first so its easier */
+body {
+    background: rgb(114, 221, 240);
+}
+
+@media screen and (max-width: 767px) {
+    .mainDiv {
+        border: 3px solid black;
+        height: 96.5vh;
+        width: 94vw;
+        display: flex;
+        justify-content: center;
+    }
+
+    #title {
+        font-size: 2rem;
+        margin-top: 1rem;
+        font-family: "antipoda-variable", sans-serif;
+        font-variation-settings: "wght" 500, "wdth" 112;
+    }
+
+    #title::after {
+        content: '';
+        display: block;
+        position: inherit;
+        height: 0.3rem;
+        width: 100%;
+        background: linear-gradient(90deg, red, blue);
+    }
+
+    .bottomBar {
+        /* border: 3px solid black; */
+        height: 7vh;
+        width: 100vw;
+        bottom: 0;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        left: 0;
+    }
+
+    .loginIcon {
+        font-size: 50px !important;
+        z-index: 1;
+        position: relative;
+        bottom: 0.5rem !important;
+    }
+
+    .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 500,
+        'GRAD' 0,
+        'opsz' 48
+    }
+    
+    #circleBG {
+        height: 70px;
+        width: 70px;
+        background-color: white;
+        position: absolute;
+        border-radius: 10rem;
+        translate: 0 -20%;
+    }
+}
