@@ -12,7 +12,7 @@ module.exports = {
         "alt": "#DEF0F7",
       },
       fontFamily: {
-        'firsticle': ['Lilita One', 'cursive']
+        'title': ['turquoise'],
       },
     },
   },

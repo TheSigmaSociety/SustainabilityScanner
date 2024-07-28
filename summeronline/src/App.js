@@ -12,13 +12,13 @@ function App() {
 function Header() {
   return <div>
     <section className = "md w-screen flex justify-center my-5 relative">
-      <p className = "text-6xl font-firsticle text-background">EcoScan</p>
+      <p className = "text-6xl font-title text-background">EcoScan</p>
     </section>
   </div>
 }
 function Content() {
-  return (
-    <div className="flex justify-center items-center h-2/3 border-black border-3">
+  return (<div>
+    <div className="flex justify-center items-center h-2.9/3">
       <div className="w-4/5">
         <h1 className="text-4xl font-second font-bold text-primary w-50">A Sustainable Way to Shop</h1>
         <p className="text-lg text-primary pt-2">
@@ -26,6 +26,11 @@ function Content() {
         </p>
       </div>
     </div>
+    <div className="flex justify-center items-center h-1/3 absolute -right-7 bottom-0">
+      <img className = "w-56 h-56"src='/leaf.png' alt = "Leaf"/>
+    </div>
+  </div>
+
   );
 }
 
