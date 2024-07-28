@@ -1,12 +1,9 @@
 import './App.css';
-import CameraComponent from './camera';
 
-let play = false;
 function App() {
   return <div className = "h-screen w-screen bg-alt flex flex-col">
     <Header />
     <Content />
-    <CameraComponent isPlay = {play}/>
     <Footer />
   </div>;
 }
