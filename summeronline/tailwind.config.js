@@ -12,7 +12,9 @@ module.exports = {
         "alt": "#DEF0F7",
       },
       fontFamily: {
-        'title': ['turquoise'],
+        'title': ['turquoise-inline'],
+        'title2': ['access-mn'],
+        'content': ['']
       },
     },
   },

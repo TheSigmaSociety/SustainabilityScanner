@@ -20,7 +20,7 @@ function Content() {
   return (<div>
     <div className="flex justify-center items-center h-2.9/3">
       <div className="w-4/5">
-        <h1 className="text-4xl font-second font-bold text-primary w-50">A Sustainable Way to Shop</h1>
+        <h1 className="text-4xl font-title2 font-bold text-primary w-50">A Sustainable Way to Shop</h1>
         <p className="text-lg text-primary pt-2">
           Scan your groceries and find products with a lower environmental impact.
         </p>
