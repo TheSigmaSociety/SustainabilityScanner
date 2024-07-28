@@ -1,5 +1,6 @@
 import './App.css';
 import CameraComponent from './camera';
+
 function App() {
   return <div className = "h-screen w-screen bg-alt flex flex-col overflow-hidden relative">
     <Header />
@@ -32,22 +33,22 @@ function Content() {
     <div className="flex justify-center items-center h-1/3 absolute -left-16 bottom-64">
       <img className = "w-full h-full rotate-30"src='/leaf11.png' alt = "Leaf"/>
     </div>
-    <div className="flex justify-center items-center h-1/3 absolute -left-0 bottom-32">
+    <div className="flex justify-center items-center h-1/3 absolute left-0 bottom-32">
       <img className = "w-full h-full rotate-240"src='/leaf1.png' alt = "Leaf"/>
     </div>
     <div className="flex justify-center items-center h-1/3 absolute -right-20 -top-20">
       <img className = "w-full h-full rotate-240"src='/leaf8.png' alt = "Leaf"/>
     </div>
   </div>
-
   );
 }
 
 function Footer() {
+
   const clicked = () => {
     console.log("clicked");
-
   }
+
   return <div className = "w-screen">
     <section  className = "bottom-0 bg-third w-screen h-16 absolute flex items-center justify-center">
       <div className = "bg-third h-24 w-24 rounded-full flex items-center justify-center -translate-y-4 flex-col cursor-pointer" onClick={clicked}>
@@ -64,7 +65,6 @@ function Footer() {
         <p className = "w-40 translate-x-7">Take a Picture!</p>
       </div>
     </section>
-
   </div>
 }
 
