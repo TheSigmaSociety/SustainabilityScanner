@@ -8,8 +8,9 @@ db = mysql.connector.connect(
     host="localhost",
     user=os.getenv("DB_USER"),
     passwd = os.getenv("DB_PASSWORD"),
-    database=os.dotenv("DB_NAME")
+    database=os.gotenv("DB_NAME")
 )
+
 mycursor = db.cursor()
 
 mycursor.execute("DESCRIBE person")
