@@ -3,7 +3,7 @@ import CameraComponent from './camera';
 
 let play = false;
 function App() {
-  return <div className = "h-screen w-screen bg-alt flex flex-col">
+  return <div className = "h-screen w-screen bg-alt flex flex-col overflow-hidden relative">
     <Header />
     <Content />
     <CameraComponent isPlay = {play}/>
@@ -14,22 +14,31 @@ function App() {
 function Header() {
   return <div>
     <section className = "md w-screen flex justify-center my-5 relative">
-      <p className = "text-6xl font-title text-background">EcoScan</p>
+      <p className = "text-6xl font-title text-background text-center">Sustainability Scanner</p>
     </section>
   </div>
 }
 function Content() {
   return (<div>
-    <div className="flex justify-center items-center h-2.9/3">
-      <div className="w-4/5">
-        <h1 className="text-4xl font-title2 font-bold text-primary w-50">A Sustainable Way to Shop</h1>
-        <p className="text-lg text-primary pt-2">
-          Scan your groceries and find products with a lower environmental impact.
+    <div className="flex justify-center items-center h-2.9/3 mt-2">
+      <div className="w-4/5 z-10">
+        <h1 className="text-4xl font-title2 font-bold text-primary w-50 text-right">A Sustainable Way to Shop</h1>
+        <p className="text-lg text-primary pt-6 text-right w-100 ml-4">
+          Scan your groceries and find products with a lower environmental impact. 
         </p>
       </div>
     </div>
     <div className="flex justify-center items-center h-1/3 absolute -right-7 bottom-0">
-      <img className = "w-56 h-56"src='/leaf.png' alt = "Leaf"/>
+      <img className = "w-full h-full -rotate-200"src='/leaf7.png' alt = "Leaf"/>
+    </div>
+    <div className="flex justify-center items-center h-1/3 absolute -left-16 bottom-64">
+      <img className = "w-full h-full rotate-30"src='/leaf11.png' alt = "Leaf"/>
+    </div>
+    <div className="flex justify-center items-center h-1/3 absolute -left-0 bottom-32">
+      <img className = "w-full h-full rotate-240"src='/leaf1.png' alt = "Leaf"/>
+    </div>
+    <div className="flex justify-center items-center h-1/3 absolute -right-20 -top-20">
+      <img className = "w-full h-full rotate-240"src='/leaf8.png' alt = "Leaf"/>
     </div>
   </div>
 
