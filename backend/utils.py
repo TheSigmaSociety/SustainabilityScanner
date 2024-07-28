@@ -27,10 +27,10 @@ def openaiRequest(imagePath, prompt):
                 ],
             }
         ],
-        "max_tokens": 100,
+        "max_tokens": 200,
     }
     response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
-    return response.json()
+    return response.json()['choices'][0]['message']['content']
 
 
 

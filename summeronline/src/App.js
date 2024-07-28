@@ -1,12 +1,10 @@
 import './App.css';
 import CameraComponent from './camera';
-
-let play = false;
 function App() {
   return <div className = "h-screen w-screen bg-alt flex flex-col overflow-hidden relative">
     <Header />
     <Content />
-    <CameraComponent isPlay = {play}/>
+    <CameraComponent />
     <Footer />
   </div>;
 }
