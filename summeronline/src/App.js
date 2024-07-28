@@ -30,9 +30,12 @@ function Content() {
 }
 
 function Footer() {
+  const clicked = () => {
+    console.log("clicked");
+  }
   return <div className = "w-screen">
     <section  className = "bottom-0 bg-third w-screen h-16 absolute flex items-center justify-center">
-      <div className = "bg-third h-24 w-24 rounded-full flex items-center justify-center -translate-y-4 flex-col">
+      <div className = "bg-third h-24 w-24 rounded-full flex items-center justify-center -translate-y-4 flex-col cursor-pointer" onClick={clicked}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none" viewBox="0 0 24 24"
