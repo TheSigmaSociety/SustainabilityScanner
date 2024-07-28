@@ -3,13 +3,13 @@ from flask_cors import CORS
 import os
 from dotenv import load_dotenv
 import json
+import utils
 
 app = Flask(__name__)
 CORS(app)
 load_dotenv()
-url = "localhost:5000"
 
-userDataPath = 'userData.json'
+url = "localhost:5000"
 
 def get_user_data():
     with open(userDataPath, 'r') as f:
@@ -30,7 +30,6 @@ def login():
         return jsonify({"message": "Logged in"}), 200
     else:
         return jsonify({"error": "wrong username or password"}), 401
-
 
 if __name__ == '__main__':
     app.run()
