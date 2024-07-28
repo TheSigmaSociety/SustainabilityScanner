@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
+import React, {useRef,useEffect,useState} from 'react';
 const CameraComponent = (isPlay) => {
     const videoRef = useRef(null);
     const video = () => {
@@ -7,11 +6,18 @@ const CameraComponent = (isPlay) => {
         let video = videoRef.current;
         video.srcObject = stream;
         video.play();
+    }).catch(err => {
+        console.log(err);
     }) 
    }
    useEffect(() => {
     video();
    }, [videoRef]);
+    return (
+        <div>
+            <video ref={videoRef} />
+        </div>
+    );
     
 };
 
