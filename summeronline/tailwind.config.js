@@ -23,6 +23,12 @@ module.exports = {
         '30': '30deg',
         '240': '240deg',
       },
+      height: {
+        '128': '40rem',
+      },
+      spacing: {
+        '45': '11.5rem',
+      },
     },
   },
   plugins: [],
