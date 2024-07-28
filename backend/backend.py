@@ -3,67 +3,13 @@ from flask_cors import CORS
 import os
 from dotenv import load_dotenv
 import json
-import requests
-
+import utils
 
 app = Flask(__name__)
 CORS(app)
 load_dotenv()
-openai_key = os.getenv('KEY')
+
 url = "localhost:5000"
-userDataPath = 'userData.json'
-
-def openAiRequest(prompt, input):
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {
-            "role": "user",
-            "content": [
-                {"type": "text", "text": prompt},
-                {
-                "type": "image_url",
-                "image_url": {
-                    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg",
-                },
-                },
-            ],
-            }
-        ],
-        max_tokens=300,
-    )
-    return response.choices[0]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 def get_user_data():
     with open(userDataPath, 'r') as f:
