@@ -32,7 +32,7 @@ module.exports = {
         'double': '200%',
       },
       spacing: {
-        '45': '11.5rem',
+        '45': '40rem',
       },
     },
   },
