@@ -36,5 +36,8 @@ url = "localhost:5000"
 # if __name__ == '__main__':
 #     app.run()
 
-print('_________________________________________________________________________________________________________________________')
 PROMPT = "using the given ingredients/materials label, identify the possible ingredients and parts of the product which could have a SIGNIFICANT impact on sustainability. The product has a starting score of 10/10. For each ingredient/component with a SIGNIFICANTLY NEGATIVE IMPACT ON SUSTAINABILITY, deduct one point from the score. Give the user a list of the materials and a VERY CONCICE explanation of why the ingredient has a negative impact on the sustainability. The response MUST be in plain text, no formatting such as * or #. follow this template in your response: Intro, items, final score. put as many items as needed or is significant. if a product is sustainable to an extent, give it a high score (>7)"
+@app.route('/freddyFazbear',methods=['POST'])
+def getImage(): #{image:<actualImage>}
+    data=request.get_json()['image']
+    
