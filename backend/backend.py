@@ -1,3 +1,4 @@
+import re
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
@@ -41,27 +42,11 @@ from PIL import Image
 from io import BytesIO
 
 
-def save_base64_image(base64_string, output_path):
-    # Add padding if necessary
-    missing_padding = len(base64_string) % 4
-    if missing_padding:
-        base64_string += "=" * (4 - missing_padding)
-
-    # Decode the base64 string
-    image_data = base64.b64decode(base64_string)
-
-    # Convert bytes to an image
-    image = Image.open(BytesIO(image_data))
-
-    # Save the image
-    image.save(output_path)
-
-
 @app.route("/upload", methods=["POST"])
 def getImage():  # {image:<actualImage>}
-    data = request.get_json()["image"]
-    save_base64_image(data, "test.png")
-    return jsonify({"status": "ok"}), 200
+    base64_string = request.get_json()["image"]
+    output = utils.openaiRequest(base64_string,PROMPT)
+    return jsonify({"status": output}), 200
     # if data:
     #     output = utils.openaiRequest(data,PROMPT)
     #     print(output)

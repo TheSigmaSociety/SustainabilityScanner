@@ -45,12 +45,13 @@ const CameraComponent = () => {
       //upload to server
       fetch(UPLOAD_IP, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {'Content-Type': 'application/json',},
         body: JSON.stringify({ image: photo }),
-      });
-      console.log("har har har har har har");
+      }).then(response => response.json()).then(data => {
+        console.log(data);
+        //do something with the response
+
+      }).catch((error) => {console.error('Error:', error);});
     }
   };
 
