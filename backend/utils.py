@@ -2,6 +2,7 @@ import base64
 import requests
 import os
 from dotenv import load_dotenv
+import mysql.connector
 
 def encodeImage(image_path):
     with open(image_path, "rb") as image_file:
@@ -32,7 +33,27 @@ def openaiRequest(imagePath, prompt):
     response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
     return response.json()['choices'][0]['message']['content']
 
-def sqlInsert(db, table, columns, values):
+def sqlInit():
+    db = mysql.connector.connect(
+        host="localhost",
+        user=os.getenv("DB_USER"),
+        passwd = os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME")
+    )
+    mycursor = db.cursor()
+    mycursor.execute("CREATE DATABASE IF NOT EXISTS summerhack")
+    mycursor.execute("CREATE TABLE IF NOT EXISTS users (username VARCHAR(255), score INT)")
+    mycursor.execute("CREATE TABLE IF NOT EXISTS products (name VARCHAR(255), score INT, description TEXT)")
+    mycursor.close()
+    db.close()
+
+def sqlInsert(table, columns, values):
+    db = mysql.connector.connect(
+        host="localhost",
+        user=os.getenv("DB_USER"),
+        passwd = os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME")
+    )
     mycursor = db.cursor()
     mycursor.execute(f"INSERT INTO {table} ({', '.join(columns)}) VALUES ({', '.join(['%s' for _ in values])})", values)
 
