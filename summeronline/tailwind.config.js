@@ -13,8 +13,21 @@ module.exports = {
       },
       fontFamily: {
         'title': ['turquoise-inline'],
-        'title2': ['access-mn'],
+        'title2': ['latienne-pro'],
         'content': ['']
+      },
+      rotate: {
+        '200': '200deg',
+        '60': '60deg',
+        '20': '20deg',
+        '30': '30deg',
+        '240': '240deg',
+      },
+      height: {
+        '128': '40rem',
+      },
+      spacing: {
+        '45': '11.5rem',
       },
     },
   },
