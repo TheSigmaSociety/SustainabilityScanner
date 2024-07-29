@@ -61,7 +61,7 @@ function Footer() {
               <p className = "">
                 <CameraComponent />
               </p>
-              <div className = "flex bottom-0 items-center justify-center">
+              <div className = "flex bottom-0 items-center justify-center bg-third rounded">
                 <button onClick={togglePopup}>Close</button>
               </div>
             </div>
