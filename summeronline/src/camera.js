@@ -1,6 +1,6 @@
 import React, { useRef, useEffect,useState} from 'react';
 const CameraComponent = () => {
-    UPLOAD_IP = "http://localhost:5000/upload" //change this to the server's IP
+const UPLOAD_IP = "http://localhost:5000/upload" //change this to the server's IP
   const videoRef = useRef(null);
   const [photo, setPhoto] = useState(null);
   const [upload, setUpload] = useState("Take photo");
