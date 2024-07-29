@@ -32,5 +32,14 @@ def openaiRequest(imagePath, prompt):
     response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
     return response.json()['choices'][0]['message']['content']
 
+def sqlInsert(db, table, columns, values):
+    mycursor = db.cursor()
+    mycursor.execute(f"INSERT INTO {table} ({', '.join(columns)}) VALUES ({', '.join(['%s' for _ in values])})", values)
+
+    db.commit()
+    mycursor.close()
+    db.close()
+
+
 
 
