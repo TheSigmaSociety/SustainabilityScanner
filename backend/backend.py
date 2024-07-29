@@ -16,7 +16,6 @@ url = "localhost:5000"
 #         return json.load(f)
 
 
-    
 # @app.route('/login', methods=['POST'])
 # def login():
 #     data=request.get_json()
@@ -25,7 +24,7 @@ url = "localhost:5000"
 
 #     if not username or not password:
 #         return jsonify({'error': 'uname and password are req'}), 400
-    
+
 #     userData = get_user_data()
 
 #     if username in userData and userData[username]['password'] == password:
@@ -37,7 +36,39 @@ url = "localhost:5000"
 #     app.run()
 
 PROMPT = "using the given ingredients/materials label, identify the possible ingredients and parts of the product which could have a SIGNIFICANT impact on sustainability. The product has a starting score of 10/10. For each ingredient/component with a SIGNIFICANTLY NEGATIVE IMPACT ON SUSTAINABILITY, deduct one point from the score. Give the user a list of the materials and a VERY CONCICE explanation of why the ingredient has a negative impact on the sustainability. The response MUST be in plain text, no formatting such as * or #. follow this template in your response: Intro, items, final score. put as many items as needed or is significant. if a product is sustainable to an extent, give it a high score (>7)"
-@app.route('/freddyFazbear',methods=['POST'])
-def getImage(): #{image:<actualImage>}
-    data=request.get_json()['image']
-    
+import base64
+from PIL import Image
+from io import BytesIO
+
+
+def save_base64_image(base64_string, output_path):
+    # Add padding if necessary
+    missing_padding = len(base64_string) % 4
+    if missing_padding:
+        base64_string += "=" * (4 - missing_padding)
+
+    # Decode the base64 string
+    image_data = base64.b64decode(base64_string)
+
+    # Convert bytes to an image
+    image = Image.open(BytesIO(image_data))
+
+    # Save the image
+    image.save(output_path)
+
+
+@app.route("/upload", methods=["POST"])
+def getImage():  # {image:<actualImage>}
+    data = request.get_json()["image"]
+    save_base64_image(data, "test.png")
+    return jsonify({"status": "ok"}), 200
+    # if data:
+    #     output = utils.openaiRequest(data,PROMPT)
+    #     print(output)
+    #     return jsonify({"out":output}), 200
+    # else:
+    #     return jsonify({"error":"Invalid image"}), 401
+
+
+if __name__ == "__main__":
+    app.run("127.0.0.1", 5000)
