@@ -1,5 +1,6 @@
 import React, { useRef, useEffect,useState} from 'react';
 const CameraComponent = () => {
+    UPLOAD_IP = "http://localhost:5000/upload" //change this to the server's IP
   const videoRef = useRef(null);
   const [photo, setPhoto] = useState(null);
   const [upload, setUpload] = useState("Take photo");
@@ -37,6 +38,13 @@ const CameraComponent = () => {
     setUpload("Submit?");
     } else {
         //upload to server
+        fetch(UPLOAD_IP, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({image: photo}),
+        })
         console.log("har har har har har har")
     }
   };
