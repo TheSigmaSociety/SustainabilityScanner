@@ -40,13 +40,13 @@ def openaiRequest(image, prompt):
 
 def sqlInit():
     db = mysql.connector.connect(
-        host="localhost",
+        host=os.getenv("IP"),
         user=os.getenv("DB_USER"),
         passwd=os.getenv("DB_PASSWORD"),
         database=os.getenv("DB_NAME"),
     )
     mycursor = db.cursor()
-    mycursor.execute("CREATE DATABASE IF NOT EXISTS summerhack")
+    mycursor.execute("CREATE DATABASE IF NOT EXISTS SustainabilityScanner")
     mycursor.execute(
         "CREATE TABLE IF NOT EXISTS users (username VARCHAR(255), score INT)"
     )
