@@ -57,7 +57,7 @@ const CameraComponent = () => {
   };
 
   return (
-    <div className = "flex flex-col justify-center items-center ">
+    <div className = "flex flex-col justify-center items-center p-2">
       {photo && <img src={photo}  className='aspect-auto'/>}
       {!photo && <video ref={videoRef} autoPlay className='aspect-auto'/>}
       <div
