@@ -25,9 +25,14 @@ module.exports = {
       },
       height: {
         '128': '40rem',
+        'double': '200%',
+      },
+      width: {
+        '128': '40rem',
+        'double': '200%',
       },
       spacing: {
-        '45': '11.5rem',
+        '45': '40rem',
       },
     },
   },
