@@ -19,7 +19,7 @@ def openaiRequest(imagePath, prompt):
     }
     payload = {
         "model": "gpt-4o-mini",
-        "response_format":{ "type": "json_object" },
+        "response_format": {"type": "json_object"},
         "messages": [
             {
                 "role": "user",
@@ -34,8 +34,10 @@ def openaiRequest(imagePath, prompt):
         ],
         "max_tokens": 200,
     }
-    response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
-    return response.json()['choices'][0]['message']['content']
+    response = requests.post(
+        "https://api.openai.com/v1/chat/completions", headers=headers, json=payload
+    )
+    return response.json()["choices"][0]["message"]["content"]
 
 
 def sqlInit():
@@ -74,6 +76,27 @@ def sqlInsert(table, columns, values):
     db.commit()
     mycursor.close()
     db.close()
+    
+def storeProduct(name):
+    path = downloadImage(name,filename="test001.jpeg")
+    encodeBase64(path)
+
+
+#alr since ur getting jumped
+#im thinking
+#we do
+def storeImage(name):
+    path = downloadImage(name)
+    encodeBase64(path,name)
+    #do everything
+    #call it in backend.py
+    return "i am a sigma" #shh
+
+def encodeBase64(imagePath,name):
+    with open(imagePath, "rb") as imageFile:
+        b64 =  "data:image/jpeg;base64," + base64.b64encode(imageFile.read()).decode("utf-8")
+    createTxt(imagePath,name,b64)
+    os.remove(imagePath)
 
 def downloadImage(keyword, limit=1, filename="default.jpg"):
     crawler = GoogleImageCrawler(storage={"root_dir": r"backend/images"})
@@ -87,3 +110,10 @@ def downloadImage(keyword, limit=1, filename="default.jpg"):
         return newFilePath
     else:
         return None
+    
+def createTxt(dir, name, content):
+    with open(os.path.join(dir, name), "w") as file:
+        file.write(content)
+    return os.path.join(dir, name)
+
+
