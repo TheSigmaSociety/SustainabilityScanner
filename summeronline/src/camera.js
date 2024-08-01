@@ -57,8 +57,8 @@ const CameraComponent = () => {
 
   return (
     <div>
-      {photo && <img src={photo} />}
-      {!photo && <video ref={videoRef} autoPlay />}
+      {photo && <img src={photo}  className='w-full h-auto, aspect-video'/>}
+      {!photo && <video ref={videoRef} autoPlay className='w-full h-auto, aspect-video'/>}
       <div
         className="flex bottom-0 items-center justify-center bg-third rounded cursor-pointer"
         onClick={getSigma}
