@@ -12,8 +12,23 @@ function App() {
   return (
     <div className="h-screen w-screen bg-alt flex flex-col overflow-hidden">
       <Header />
+
+      {popup && (
+        <div className="absolute h-full w-full bg-primary bg-opacity-75 rounded p-2 z-20 flex">
+          <div className="flex flex-col w-full h-full items-center bg-alt pt-5 rounded-md p-2">
+            <h1 className="text-center font-title text-3xl -mt-2">Scan your item!</h1>
+            <div>
+              <CameraComponent />
+            </div>
+            <div className="bottom-5 absolute bg-third rounded mt-4">
+              <button onClick={togglePopup}>Close</button>
+            </div>
+          </div>
+        </div>
+
+      )}
       <main className="flex flex-col flex-grow">
-        <Content popup={popup} togglePopup={togglePopup} />
+        <Content />
       </main>
       <Footer togglePopup={togglePopup} />
     </div>
@@ -33,7 +48,7 @@ function Header() {
   );
 }
 
-function Content({ popup, togglePopup }) {
+function Content() {
   return (
     <div className="flex flex-col flex-grow relative overflow-hidden">
       <div className="flex justify-center flex-grow mt-2 relative z-10">
@@ -58,20 +73,6 @@ function Content({ popup, togglePopup }) {
           <img className="w-auto h-auto transform scale-50 md:scale-100 rotate-240" src='/leaf1.png' alt="Leaf" />
         </div>
       </div>
-
-      {popup && (
-        <div className="absolute h-full w-11/12 top-0 right-1/2 transform translate-x-1/2 bg-secondary rounded p-5 z-20">
-          <div className="flex flex-col justify-center items-center">
-            <h1 className="text-center font-title2 text-xl -mt-2">Scan your item!</h1>
-            <div>
-              <CameraComponent />
-            </div>
-            <div className="flex items-center justify-center bg-third rounded mt-4">
-              <button onClick={togglePopup}>Close</button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
