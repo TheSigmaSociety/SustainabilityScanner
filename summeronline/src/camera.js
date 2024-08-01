@@ -56,11 +56,11 @@ const CameraComponent = () => {
   };
 
   return (
-    <div>
+    <div className = "flex flex-col justify-center items-center ">
       {photo && <img src={photo} />}
       {!photo && <video ref={videoRef} autoPlay />}
       <div
-        className="flex bottom-0 items-center justify-center bg-third rounded cursor-pointer"
+        className="flex bottom-0 w-24 items-center justify-center bg-secondary rounded cursor-pointer mt-1"
         onClick={getSigma}
       >
         {upload}
