@@ -45,11 +45,12 @@ from io import BytesIO
 @app.route("/upload", methods=["POST"])
 def getImage():  # {image:<actualImage>}
     base64_string = request.get_json()["image"]
-    output = utils.openaiRequest(base64_string,PROMPT)
-    x = (json.loads(output))
-    utils.sqlInsert("products", list(x.keys()), list(x.values()))
+    output = json.loads(utils.openaiRequest(base64_string,PROMPT))
+    value = list(output.values())
+    value[-1] = " ".join(value[-1])
+    utils.sqlInsert("products", list(output.keys()), value)
     
-    return jsonify(x), 200
+    return jsonify(output), 200
 
 
 if __name__ == "__main__":
