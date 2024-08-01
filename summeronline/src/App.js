@@ -19,6 +19,7 @@ function App() {
             <h1 className="text-center font-title text-3xl -mt-2">Scan your item!</h1>
             <div>
               <CameraComponent />
+              <iframe width="110" height="200" src="https://www.myinstants.com/instant/wait-wait-wait-what-the-hell-legend-sound-65445/embed/" frameborder="0" scrolling="no"></iframe>
             </div>
             <div className="bottom-5 absolute bg-third rounded mt-4">
               <button onClick={togglePopup}>Close</button>
