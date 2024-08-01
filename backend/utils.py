@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 import mysql.connector
 from icrawler.builtin import GoogleImageCrawler
+import json
 
 
 def encodeImage(image_path):
@@ -11,7 +12,8 @@ def encodeImage(image_path):
         return base64.b64encode(image_file.read()).decode("utf-8")
 
 
-def openaiRequest(image, prompt):
+def openaiRequest(imagePath, prompt):
+    base64Image = encodeImage(imagePath)
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {os.getenv('KEY')}",
@@ -25,17 +27,15 @@ def openaiRequest(image, prompt):
                     {"type": "text", "text": prompt},
                     {
                         "type": "image_url",
-                        "image_url": {"url": f"{image}"},
+                        "image_url": {"url": f"data:image/jpeg;base64,{base64Image}"},
                     },
                 ],
             }
         ],
         "max_tokens": 200,
     }
-    response = requests.post(
-        "https://api.openai.com/v1/chat/completions", headers=headers, json=payload
-    )
-    return response.json()["choices"][0]["message"]["content"]
+    response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
+    return response.json()['choices'][0]['message']['content']
 
 
 def sqlInit():
