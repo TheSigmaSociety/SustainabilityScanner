@@ -60,7 +60,7 @@ def sqlInit():
 
 def sqlInsert(table, columns, values):
     db = mysql.connector.connect(
-        host="localhost",
+        host=os.getenv("IP"),
         user=os.getenv("DB_USER"),
         passwd=os.getenv("DB_PASSWORD"),
         database=os.getenv("DB_NAME"),
