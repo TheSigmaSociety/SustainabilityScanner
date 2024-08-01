@@ -50,6 +50,7 @@ const CameraComponent = () => {
       }).then(response => response.json()).then(data => {
         console.log(data);
         //do something with the response
+        //har with the response
 
       }).catch((error) => {console.error('Error:', error);});
     }
@@ -57,8 +58,8 @@ const CameraComponent = () => {
 
   return (
     <div className = "flex flex-col justify-center items-center ">
-      {photo && <img src={photo}  className='w-full h-auto, aspect-video'/>}
-      {!photo && <video ref={videoRef} autoPlay className='w-full h-auto, aspect-video'/>}
+      {photo && <img src={photo}  className='w-auto h-auto, aspect-auto'/>}
+      {!photo && <video ref={videoRef} autoPlay className='w-auto h-auto, aspect-auto'/>}
       <div
         className="flex bottom-0 w-24 items-center justify-center bg-secondary rounded cursor-pointer mt-1"
         onClick={getSigma}
