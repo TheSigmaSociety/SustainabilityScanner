@@ -14,19 +14,18 @@ function App() {
       <Header />
 
       {popup && (
-        <div className="absolute h-full w-full bg-primary bg-opacity-75 rounded p-2 z-20 flex">
-          <div className="flex flex-col w-full h-full items-center bg-alt pt-5 rounded-md p-2">
-            <h1 className="text-center font-title text-3xl -mt-2">Scan your item!</h1>
-            <div>
-              <CameraComponent />
-            </div>
-            <div className="bottom-5 absolute bg-third rounded mt-4">
-              <button onClick={togglePopup}>Close</button>
-            </div>
+      <div className="absolute h-full w-full bg-primary bg-opacity-75 rounded p-2 z-20 flex justify-center items-center">
+        <div className="flex flex-col w-full max-w-lg items-center bg-alt pt-5 rounded-md p-2">
+          <h1 className="text-center font-title text-3xl mt-2">Scan your item!</h1>
+          <div>
+            <CameraComponent />
+          </div>
+          <div className="bg-third rounded mt-4">
+            <button onClick={togglePopup}>Close</button>
           </div>
         </div>
-
-      )}
+      </div>
+    )}
       <main className="flex flex-col flex-grow">
         <Content />
       </main>
