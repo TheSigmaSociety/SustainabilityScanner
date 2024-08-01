@@ -45,6 +45,7 @@ def sqlInit():
         passwd=os.getenv("DB_PASSWORD"),
         database=os.getenv("DB_NAME"),
     )
+    print(f"Connected to {db.get_server_info()}")
     mycursor = db.cursor()
     mycursor.execute("CREATE DATABASE IF NOT EXISTS SustainabilityScanner")
     mycursor.execute(
