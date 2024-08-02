@@ -4,7 +4,7 @@ const CameraComponent = () => {
   const UPLOAD_IP = "http://127.0.0.1:5001/upload"; //change this to the server's IP
   const videoRef = useRef(null);
   const [photo, setPhoto] = useState(null);
-  const [upload, setUpload] = useState("Take photo");
+  const [upload, setUpload] = useState(""); //take photo
   const [isPhotoTaken, setIsPhotoTaken] = useState(false);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const CameraComponent = () => {
       const context = canvas.getContext('2d');
       context.drawImage(video, 0, 0, canvas.width, canvas.height);
       setPhoto(canvas.toDataURL('image/png'));
-      // setUpload("Submit?");
+      setUpload(""); //submit
       setIsPhotoTaken(true);
     } else {
       //upload to server
