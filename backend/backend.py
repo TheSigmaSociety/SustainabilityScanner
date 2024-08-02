@@ -39,10 +39,16 @@ def getImage():  # {image:<actualImage>}
     value = list(output.values())
     value[-1] = " ".join(value[-1])
     utils.sqlInsert("products", list(output.keys()), value)
-    utils.storeImage(output["name"])
+    #print(output)
+    if(output['name'] != "Unkown Product"):
+        utils.storeImage(output["name"])
     return jsonify(output), 200
 
+@app.route("/getItem",methods=['GET'])
+def getItem():
+    value = request.args.get('place')
+    
 
 if __name__ == "__main__":
     utils.sqlInit()
-    app.run("127.0.0.1", 5000)
+    app.run("127.0.0.1", 5001)

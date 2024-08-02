@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
 
 const CameraComponent = () => {
-  const UPLOAD_IP = "http://127.0.0.1:5000/upload"; //change this to the server's IP
+  const UPLOAD_IP = "http://127.0.0.1:5001/upload"; //change this to the server's IP
   const videoRef = useRef(null);
   const [photo, setPhoto] = useState(null);
   const [upload, setUpload] = useState("Take photo");
-
+//cap its needed
   useEffect(() => {
     const startCamera = async () => {
       try {
@@ -51,6 +51,7 @@ const CameraComponent = () => {
         console.log(data);
         //do something with the response
         //har with the response
+        //bruh i forgot how comments work
 
       }).catch((error) => {console.error('Error:', error);});
     }
@@ -64,7 +65,7 @@ const CameraComponent = () => {
         className="flex bottom-0 w-24 items-center justify-center bg-secondary rounded cursor-pointer mt-1"
         onClick={getSigma}
       >
-        {upload}
+        {upload} 
       </div>
     </div>
   );

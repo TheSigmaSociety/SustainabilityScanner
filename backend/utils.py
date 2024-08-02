@@ -81,12 +81,14 @@ def storeProduct(name):
     path = downloadImage(name,filename="test001.jpeg")
     encodeBase64(path)
 
+#backend/images\Kellogg's Nutri Grain Apple Cinnamon Soft Baked Breakfast Bars.jpg
 
 #alr since ur getting jumped
 #im thinking
 #we do
 def storeImage(name):
-    path = downloadImage(name)
+    path = downloadImage(name,filename=name)
+    print(path)
     encodeBase64(path,name)
     #do everything
     #call it in backend.py
@@ -95,16 +97,17 @@ def storeImage(name):
 def encodeBase64(imagePath,name):
     with open(imagePath, "rb") as imageFile:
         b64 =  "data:image/jpeg;base64," + base64.b64encode(imageFile.read()).decode("utf-8")
-    createTxt(imagePath,name,b64)
+    createTxt(r"images",name,b64)
     os.remove(imagePath)
 
 def downloadImage(keyword, limit=1, filename="default.jpg"):
-    crawler = GoogleImageCrawler(storage={"root_dir": r"backend/images"})
+    filename += ".jpg"
+    crawler = GoogleImageCrawler(storage={"root_dir": r"backend"})
     crawler.crawl(keyword=keyword, max_num=limit)
-    downloadedFiles = os.listdir(r"backend/images")
+    downloadedFiles = os.listdir(r"backend")
     if downloadedFiles:
-        downloadedFilePath = os.path.join(r"backend/images", downloadedFiles[0])
-        newFilePath = os.path.join(r"backend/images", filename)
+        downloadedFilePath = os.path.join(r"backend", downloadedFiles[0])
+        newFilePath = os.path.join(r"backend", filename)
 
         os.rename(downloadedFilePath, newFilePath)
         return newFilePath
@@ -112,6 +115,7 @@ def downloadImage(keyword, limit=1, filename="default.jpg"):
         return None
     
 def createTxt(dir, name, content):
+    name += ".txt"
     with open(os.path.join(dir, name), "w") as file:
         file.write(content)
     return os.path.join(dir, name)
