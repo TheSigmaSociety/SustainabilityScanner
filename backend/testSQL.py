@@ -6,9 +6,11 @@ import utils
 load_dotenv()
 
 # utils.sqlInit()
-print(len(utils.encodeBase64(r"backend\images\carrot.png")))
-# utils.sqlInsert("users", ["username", "score"], ["Freddy fazbear", 69])
-# utils.sqlInsert("products", ["name", "score", "description"], ["freddy's signature cheese pizza", 69, "ishan sHARma"])
+# print(len(utils.encodeBase64(r"backend\images\carrot.png")))
+utils.sqlInsert("users", ["username", "score"], ["Freddy fazbear", 69])
+utils.sqlInsert("products", ["name", "score", "description"], ["freddy's signature cheese pizza", 69, "ishan sHARma"])
+
+
+
 # utils.downloadImage("carrot", limit=1, filename="carrot.png")
-
-
+#limeLigth

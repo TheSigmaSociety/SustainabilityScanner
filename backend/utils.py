@@ -81,16 +81,10 @@ def storeProduct(name):
     path = downloadImage(name,filename="test001.jpeg")
     encodeBase64(path)
 
-
-#alr since ur getting jumped
-#im thinking
-#we do
 def storeImage(name):
     path = downloadImage(name)
     encodeBase64(path,name)
-    #do everything
-    #call it in backend.py
-    return "i am a sigma" #shh
+    return "i am a sigma"
 
 def encodeBase64(imagePath,name):
     with open(imagePath, "rb") as imageFile:
