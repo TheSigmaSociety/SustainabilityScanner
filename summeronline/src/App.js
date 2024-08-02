@@ -15,13 +15,21 @@ function App() {
 
       {popup && (
       <div className="absolute h-full w-full bg-primary bg-opacity-75 rounded p-2 z-20 flex justify-center items-center">
-        <div className="flex flex-col w-full max-w-lg items-center bg-alt pt-5 rounded-md p-2">
+        <div className="flex flex-col relative w-full max-w-lg items-center bg-alt pt-5 rounded-md p-2">
+          <svg 
+              onClick={togglePopup} 
+              xmlns="http://www.w3.org/2000/svg" 
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="red"
+              className="absolute top-2 right-2 w-6 h-6 cursor-pointer">
+
+              <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
           <h1 className="text-center font-title text-3xl mt-2">Scan your item!</h1>
           <div>
             <CameraComponent />
-          </div>
-          <div className="bg-third rounded mt-4">
-            <button onClick={togglePopup}>Close</button>
           </div>
         </div>
       </div>
