@@ -3,8 +3,37 @@ import CameraComponent from './camera';
 import React, { useState } from 'react';
 
 function App() {
+  const [output, setOutput] = useState(null);
+  function Content() {
+    return (
+      <div className="flex flex-col flex-grow relative overflow-hidden">
+        <div className="flex justify-center flex-grow mt-2 relative z-10">
+          <div className="w-4/5 text-right">
+            <h1 className="text-4xl font-title2 font-bold text-primary">A Sustainable Way to Shop</h1>
+            <p className="text-lg text-primary pt-6 ml-16">
+              Scan your groceries and find products with a lower environmental impact.
+            </p>
+          </div>
+        </div>
+        {output && <div className="flex flex-col flex-grow justify-center items-center">{output}</div>}
+        <div className="relative flex flex-col flex-grow">
+          <div className="absolute -bottom-48 -right-40 p-4">
+            <img className="w-auto h-auto transform scale-50 md:scale-100 -rotate-200" src='/leaf7.png' alt="Leaf" />
+          </div>
+          
+          <div className="absolute bottom-0 -left-48 p-4">
+            <img className="w-auto h-auto transform scale-50 md:scale-100 rotate-30" src='/leaf11.png' alt="Leaf" />
+          </div>
+  
+          <div className="absolute -bottom-64 -left-24 p-4">
+            <img className="w-auto h-auto transform scale-50 md:scale-100 rotate-240" src='/leaf1.png' alt="Leaf" />
+          </div>
+        </div>
+      </div>
+    );
+  }
   const [popup, setPopup] = useState(false);
-
+  
   const togglePopup = () => {
     setPopup(prev => !prev);
   };
@@ -18,7 +47,7 @@ function App() {
         <div className="flex flex-col w-full max-w-lg items-center bg-alt pt-5 rounded-md p-2">
           <h1 className="text-center font-title text-3xl mt-2">Scan your item!</h1>
           <div>
-            <CameraComponent />
+            <CameraComponent output = {output} outputFunc = {setOutput}/>
           </div>
           <div className="bg-third rounded mt-4">
             <button onClick={togglePopup}>Close</button>
@@ -47,34 +76,7 @@ function Header() {
   );
 }
 
-function Content() {
-  return (
-    <div className="flex flex-col flex-grow relative overflow-hidden">
-      <div className="flex justify-center flex-grow mt-2 relative z-10">
-        <div className="w-4/5 text-right">
-          <h1 className="text-4xl font-title2 font-bold text-primary">A Sustainable Way to Shop</h1>
-          <p className="text-lg text-primary pt-6 ml-16">
-            Scan your groceries and find products with a lower environmental impact.
-          </p>
-        </div>
-      </div>
 
-      <div className="relative flex flex-col flex-grow">
-        <div className="absolute -bottom-48 -right-40 p-4">
-          <img className="w-auto h-auto transform scale-50 md:scale-100 -rotate-200" src='/leaf7.png' alt="Leaf" />
-        </div>
-        
-        <div className="absolute bottom-0 -left-48 p-4">
-          <img className="w-auto h-auto transform scale-50 md:scale-100 rotate-30" src='/leaf11.png' alt="Leaf" />
-        </div>
-
-        <div className="absolute -bottom-64 -left-24 p-4">
-          <img className="w-auto h-auto transform scale-50 md:scale-100 rotate-240" src='/leaf1.png' alt="Leaf" />
-        </div>
-      </div>
-    </div>
-  );
-}
 
 
 function Footer({ togglePopup }) {

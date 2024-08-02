@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-const CameraComponent = () => {
+const CameraComponent = ({output,outputFunc}) => {
   const UPLOAD_IP = "http://127.0.0.1:5001/upload"; //change this to the server's IP
   const videoRef = useRef(null);
   const [photo, setPhoto] = useState(null);
@@ -30,7 +30,6 @@ const CameraComponent = () => {
       }
     };
   }, []);
-
   const getSigma = () => {
     const video = videoRef.current;
     if (video && !photo) {
@@ -49,10 +48,8 @@ const CameraComponent = () => {
         body: JSON.stringify({ image: photo }),
       }).then(response => response.json()).then(data => {
         console.log(data);
-        //do something with the response
-        //har with the response
-        //bruh i forgot how comments work
-
+        output = "name: " + data["name"] + "\n" + "score: " + data["score"] + "/10" + "\n" + "the reason: " + data["description"];
+        outputFunc(output)
       }).catch((error) => {console.error('Error:', error);});
     }
   };
