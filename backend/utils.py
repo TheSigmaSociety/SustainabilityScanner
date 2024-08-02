@@ -90,9 +90,7 @@ def storeImage(name):
     path = downloadImage(name,filename=name)
     print(path)
     encodeBase64(path,name)
-    #do everything
-    #call it in backend.py
-    return "i am a sigma" #shh
+    return "i am a sigma"
 
 def encodeBase64(imagePath,name):
     with open(imagePath, "rb") as imageFile:
