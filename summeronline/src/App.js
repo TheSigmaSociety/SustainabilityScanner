@@ -78,6 +78,7 @@ function App() {
       }
     });
   }
+  
   // const response = await fetch("http://127.0.0.1:5001/getItem?place="+"0", {}).then(response => response.json());
   //   for(var i = 0; i < 3; i++) {
   //     const product = response['products'][i]
@@ -131,38 +132,21 @@ function App() {
               <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
           <h1 className="text-center font-title text-3xl mt-2">Leaderboard!</h1>
-          <div className="mb-3 w-2/3">
-            <div className="relative mb-4 flex w-full">
-                <input
-                    type="search"
-                    className="relative text-title2 mt-3 m-0 block flex-auto rounded 
-                      border border-solid border-neutral-300 bg-transparent bg-clip-padding 
-                      px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 
-                      outline-none transition duration-200 ease-in-out focus:z-[3] 
-                      focus:border-primary focus:text-neutral-700 
-                      focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none 
-                      dark:border-neutral-600 dark:text-black-200 dark:placeholder:text-black-200
-                      dark:focus:border-primary"
-                    placeholder="Search"
-                    aria-label="Search"
-                    aria-describedby="button-addon2" />
-            </div>
-          </div>
           <div className = "flex flex-col bg-gray-300 w-full h-full rounded">
-            <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
+            <div className = "flex flex-row place-content-between w-full my-2 h-1/3 leading-4">
               {products[0] && <LbItem name={products[0]["name"]} ranking={products[0]["score"]} image = {products[0]["image"]} color = "bg-yellow-500"/>}
               {products[1] && <LbItem name={products[1]["name"]} ranking={products[1]["score"]} image = {products[1]["image"]} color = "bg-gray-400"/>}
               {products[2] && <LbItem name={products[2]["name"]} ranking={products[2]["score"]} image = {products[2]["image"]} color = "bg-orange-400"/>}
             </div>
-            <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-            {products[3] && <LbItem name={products[3]["name"]} ranking={products[3]["score"]} image = {products[3]["image"]}/>}
-            {products[4] && <LbItem name={products[4]["name"]} ranking={products[4]["score"]} image = {products[4]["image"]}/>}
-            {products[5] && <LbItem name={products[5]["name"]} ranking={products[5]["score"]} image = {products[5]["image"]}/>}
+            <div className = "flex flex-row place-content-between w-full my-2 h-1/3 leading-4">
+              {products[3] && <LbItem name={products[3]["name"]} ranking={products[3]["score"]} image = {products[3]["image"]}/>}
+              {products[4] && <LbItem name={products[4]["name"]} ranking={products[4]["score"]} image = {products[4]["image"]}/>}
+              {products[5] && <LbItem name={products[5]["name"]} ranking={products[5]["score"]} image = {products[5]["image"]}/>}
             </div>
-            <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-            {products[6] && <LbItem name={products[6]["name"]} ranking={products[6]["score"]} image = {products[6]["image"]}/>}
-            {products[7] && <LbItem name={products[7]["name"]} ranking={products[7]["score"]} image = {products[7]["image"]}/>}
-            {products[8] && <LbItem name={products[8]["name"]} ranking={products[8]["score"]} image = {products[8]["image"]}/>}
+            <div className = "flex flex-row place-content-between w-full my-2 h-1/3 leading-4">
+              {products[6] && <LbItem name={products[6]["name"]} ranking={products[6]["score"]} image = {products[6]["image"]}/>}
+              {products[7] && <LbItem name={products[7]["name"]} ranking={products[7]["score"]} image = {products[7]["image"]}/>}
+              {products[8] && <LbItem name={products[8]["name"]} ranking={products[8]["score"]} image = {products[8]["image"]}/>}
             </div>
           </div>
         </div>
@@ -181,11 +165,11 @@ function App() {
 function LbItem( { color = "bg-alt", image, name = "placeholder", ranking = "0/10", isVisible = true } ) {
   return (
     <div className={`${color} w-1/3 h-full mx-2 flex items-center justify-center text-center flex-col duration-500 
-    hover:w-full hover:flex-row`}>
-      <img className = "w-1/2 h-full" src={image} alt="img"/>
+    hover:w-full hover:flex-row rounded-md p-2`}>
+      <img className = "w-1/2 h-full rounded-md" src={image} alt="img"/>
       <div className = "flex flex-col">
         <p>{ name }</p>
-        <p>{ ranking }</p>
+        <p className = "font-black text-xl">{ ranking }/10</p>
       </div>
     </div>
   );
