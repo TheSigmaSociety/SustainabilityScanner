@@ -21,7 +21,6 @@ def putProductImage():  # {image:<actualImage>}
     base64_string = request.get_json()["image"]
     output = json.loads(utils.openaiRequest(base64_string, os.getenv("PROMPT")))
     value = list(output.values())
-    value[-1] = " ".join(value[-1])
     isDupe = json.loads(utils.checkDuplicate(value[0])).get("exists")
     if not isDupe:
         print(value[0].lower())
@@ -59,7 +58,6 @@ def getImage():
     name = request.args.get("name") + ".txt"
     files = os.listdir(r"images")
     for f in files:
-
         if(name == f):
             with open(os.path.join(r"images",name),"r") as file:
                 return jsonify({"image":file.read()}), 200
