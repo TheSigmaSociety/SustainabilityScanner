@@ -51,6 +51,10 @@ function App() {
     setLeaderboard(prev => !prev);
   };
 
+  const toggleHelp = () => { //this
+    setHelp(prev => !prev);
+  };
+
   
   useEffect(() => {
     function updateProduct(index, newProduct) {
