@@ -1,6 +1,6 @@
 import './App.css';
 import CameraComponent from './camera';
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState} from 'react';
 
 function App() {
 
@@ -180,19 +180,19 @@ function App() {
             <h1 className="text-center font-title text-3xl mt-2">How to use</h1>  
             <br></br>     
             <p className="text-center font-content text-xl">
-              Step 1: Click the "Take A Picture" button on the home page
+              1. Click the camera icon on the home page.
               <br></br><br></br>
-              Step 2: If the website asks for permission to use your camera, click "Allow"
+              2. If prompted, grant the website permission to use your camera by clicking "Allow". 
               <br></br><br></br>
-              Step 3: Point your camera at the item you want to check
+              3. Aim your camera at the item you want to check. 
               <br></br><br></br>
-              Step 4: Click the button to take a picture
+              4. Press the camera button to capture a picture.
               <br></br><br></br>
-              Step 5: Click the green check mark to confirm the picture
+              5. Confirm the picture by clicking the green check mark.
               <br></br><br></br>
-              Step 6: Wait for the website to process the image
+              6. Wait for the website to process the image.
               <br></br><br></br>
-              Shortly after, you will recieve information about your item! You can also view the leaderboard tab to see the most sustainable items that users submitted.
+              Shortly after, you will receive information about your item! You can also check the leaderboard tab to see the most sustainable items submitted by users.
             </p> 
           </div>
       </div>
