@@ -28,7 +28,7 @@ function App() {
             </p>
           </div>
         </div>
-        {output && <div className="flex flex-col flex-grow justify-center items-center">{output}</div>}
+          {output && <div className="flex flex-col flex-grow justify-center items-center">{output}</div>}
         <div className="relative flex flex-col flex-grow">
           <div className="absolute -bottom-48 -right-40 p-4">
             <img className="w-auto h-auto transform scale-50 md:scale-100 -rotate-200" src='/leaf7.png' alt="Leaf" />
