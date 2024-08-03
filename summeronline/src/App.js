@@ -74,6 +74,24 @@ function App() {
     }
     getLeaderboard()
     }, [products,setProducts]);
+    useEffect(() => {
+      function updateProduct(index, newProduct) {
+        const har = products
+        har[index] = newProduct
+        setProducts(har)
+      };
+    
+      async function getLeaderboard() {
+        const x = await fetch("http://127.0.0.1:5001/getItem?place=0").then(response => response.json());
+        for(var i = 0; i < x['products'].length; i++) {
+          const product = x['products'][i]
+          const image = await fetch("http://127.0.0.1:5001/getImage?name="+product['name']).then(response => response.json());
+          updateProduct(i,{image:image['image'],name: product['name'], score: product['score'], description : product['description']}); 
+        }
+        console.log(x)
+      }
+      getLeaderboard()
+      }, [leaderboard,products,setProducts]);
   // function setDesc() {
   //   fetch("http://127.0.0.1:5001/getItem?place=0", {
   //     method: 'GET',
