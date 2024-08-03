@@ -28,7 +28,7 @@ function App() {
             </p>
           </div>
         </div>
-        {output && <div className="flex flex-col flex-grow justify-center items-center">{output}</div>}
+          {output && <div className="flex flex-col flex-grow justify-center items-center">{output}</div>}
         <div className="relative flex flex-col flex-grow">
           <div className="absolute -bottom-48 -right-40 p-4">
             <img className="w-auto h-auto transform scale-50 md:scale-100 -rotate-200" src='/leaf7.png' alt="Leaf" />
@@ -149,7 +149,7 @@ function App() {
           </div>
           <div className = "flex flex-col bg-gray-300 w-full h-full rounded">
             <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-              {products[0] && <LbItem name={products[0]["name"]} ranking={products[0]["score"]} image = {products[0]["image"]}/>}
+              {products[0] && <LbItem name={products[0]["name"]} ranking={products[0]["score"]} image = {products[0]["image"]} color = "bg-yellow-500"/>}
               {products[1] && <LbItem name={products[1]["name"]} ranking={products[1]["score"]} image = {products[1]["image"]} color = "bg-gray-400"/>}
               {products[2] && <LbItem name={products[2]["name"]} ranking={products[2]["score"]} image = {products[2]["image"]} color = "bg-orange-400"/>}
             </div>
