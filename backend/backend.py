@@ -23,11 +23,9 @@ def putProductImage():  # {image:<actualImage>}
     value[-1] = " ".join(value[-1])
     isDupe = json.loads(utils.checkDuplicate(value[0])).get("exists")
     if not isDupe:
-        if(output['name'] != "Unkown Product"):
+        if(value[0].lower != "unkown product"):
             utils.sqlInsert("products", list(output.keys()), value)
             utils.storeImage(output["name"])
-            
-        
         return jsonify(output), 200
     else:
         print("duplicate!")
