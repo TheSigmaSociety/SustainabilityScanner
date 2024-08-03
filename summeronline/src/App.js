@@ -179,7 +179,7 @@ function App() {
             </svg>
             <h1 className="text-center font-title text-3xl mt-2">How to use</h1>  
             <br></br>     
-            <p className="text-center font-content text-xl">
+            <p className="text-left font-content text-xl ml-2 mb-2">
               1. Click the camera icon on the home page.
               <br></br><br></br>
               2. If prompted, grant the website permission to use your camera by clicking "Allow". 
@@ -293,7 +293,7 @@ function Footer({ togglePopup, toggleLeaderboard, toggleHelp }) {
       
           <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
         </svg>
-            <p className="text-sm translate-x-1">Help</p>
+            <p className="text-sm translate-x-1">Help!</p>
         </div>
 
       </section>
