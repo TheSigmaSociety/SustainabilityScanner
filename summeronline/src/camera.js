@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-const CameraComponent = ({output,outputFunc}) => {
+const CameraComponent = () => {
   const UPLOAD_IP = "http://127.0.0.1:5001/upload"; //change this to the server's IP
   const videoRef = useRef(null);
   const [photo, setPhoto] = useState(null);
   const [upload, setUpload] = useState(""); //take photo
   const [isPhotoTaken, setIsPhotoTaken] = useState(false);
-
+  const [output,outputFunc] = useState("");
   useEffect(() => {
     const startCamera = async () => {
       try {
@@ -50,8 +50,8 @@ const CameraComponent = ({output,outputFunc}) => {
         body: JSON.stringify({ image: photo }),
       }).then(response => response.json()).then(data => {
         console.log(data);
-        output = "name: " + data["name"] + "\n" + "score: " + data["score"] + "/10" + "\n" + "the reason: " + data["description"];
-        outputFunc(output)
+        const tempStr = "name: " + data["name"] + "\n"  + "score: " + data["score"] + "/10" + "\n " + "the reason: " + data["description"];
+        outputFunc(tempStr)
       }).catch((error) => {console.error('Error:', error);});
     }
   };
@@ -60,6 +60,7 @@ const CameraComponent = ({output,outputFunc}) => {
     <div className = "flex flex-col justify-center items-center p-2">
       {photo && <img src={photo}  className='aspect-auto rounded-md'/>}
       {!photo && <video ref={videoRef} autoPlay className='aspect-auto rounded-md'/>}
+      {output && <div className="flex flex-col flex-grow justify-center items-center">{output}</div>}
       <div
         className="flex bottom-0 w-24 items-center justify-center rounded cursor-pointer mt-1 border-black border-3"
         onClick={getSigma}
