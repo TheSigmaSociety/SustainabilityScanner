@@ -100,27 +100,11 @@ function App() {
                     placeholder="Search"
                     aria-label="Search"
                     aria-describedby="button-addon2" />
-                <span
-                    className="input-group-text border-black border bg-secondary mt-3 flex items-center 
-                    whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal 
-                    text-neutral-700 dark:text-neutral-200"
-                    id="basic-addon2">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="black"
-                        className="h-5 w-5">
-                        <path
-                            fillRule="evenodd"
-                            d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                            clipRule="evenodd" />
-                    </svg>
-                </span>
             </div>
           </div>
           <div className = "flex flex-col bg-gray-300 w-full h-full rounded">
             <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-              <LbItem color="secondary" image="leaf2" />
+              <LbItem color="secondary" image="leaf2" name={"First Place"}/>
               <LbItem />
               <LbItem />
             </div>
@@ -146,13 +130,20 @@ function App() {
   );
 }
 
-function LbItem( { color = "alt", image } ) {
+
+function LbItem( { color = "alt", image, name = "placeholder", ranking = "0/10", isVisible = true } ) {
   return (
-    <div className={`bg-${color} w-1/3 h-full mx-2 flex items-center justify-center text-center flex-col`}>
-      <img className = "w-1/2 h-auto" src={`/${image}.png`} alt="img"/>
-      <p>Leaderboard Item</p>
+    <div className={`bg-${color} w-1/3 h-full mx-2 flex items-center justify-center text-center flex-col duration-500 hover:scale-105`}>
+      <img className = "w-1/2 h-auto" src={`/${image}.png`} alt="img"/> 
+      <p>{ name }</p>
+      <p>{ ranking }</p>
     </div>
   );
+}
+
+function getImage(items){
+  //ur gay
+  //gay gay gay gayg ya
 }
 
 function Header() {
@@ -163,7 +154,7 @@ function Header() {
           <p className="text-6xl font-title text-background text-left">Sustainability<br />Scanner</p>
         </div>
         <div className="-top-72 -right-56 absolute p-4 z-10">
-          <img className="w-auto h-auto transform scale-50 md:scale-100 rotate-240" src='/leaf8.png' alt="Leaf" />
+          <img className="w-auto h-auto transform scale-50 md:scale-1a00 rotate-240" src='/leaf8.png' alt="Leaf" />
         </div>
       </section>
     </div>
