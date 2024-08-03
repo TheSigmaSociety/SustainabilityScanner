@@ -58,7 +58,7 @@ def getImage():
     files = os.listdir(r"backend/images")
     for f in files:
         if(name == f):
-            with open("images/"+name,"r") as file:
+            with open("backend/images/"+name,"r") as file:
                 return jsonify({"image":file.read()}), 200
     return jsonify({"image":"has"}), 200
 
