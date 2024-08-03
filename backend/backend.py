@@ -56,7 +56,7 @@ def getItem():
 @app.route("/getImage",methods=['GET'])
 def getImage():
     name = request.args.get("name") + ".txt"
-    files = os.listdir(r"images")
+    files = os.listdir(r"backend/images")
     for f in files:
         if(name == f):
             with open(os.path.join(r"images",name),"r") as file:
