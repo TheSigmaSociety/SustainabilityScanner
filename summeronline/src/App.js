@@ -180,10 +180,12 @@ function App() {
 function LbItem( { color = "bg-alt", image, name = "placeholder", ranking = "0/10", isVisible = true } ) {
   return (
     <div className={`${color} w-1/3 h-full mx-2 flex items-center justify-center text-center flex-col duration-500 
-    hover:w-full hover:flex-row`}>
-      <img className = "w-1/2 h-auto" ref={image} alt="img"/> 
-      <p>{ name }</p>
-      <p>{ ranking }</p>
+    hover:w-full hover:flex-row hover:`}>
+      <img className = "w-1/2 h-full" src={image} alt="img"/>
+      <div className = "flex flex-col">
+        <p>{ name }</p>
+        <p>{ ranking }</p>
+      </div>
     </div>
   );
 }
