@@ -1,6 +1,6 @@
 import './App.css';
 import CameraComponent from './camera';
-import React, { useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 function App() {
 
@@ -10,13 +10,6 @@ function App() {
   const initialProductState = { image: null, name: null, score: null,description: null};
   const [products, setProducts] = useState(Array(9).fill(initialProductState));
   
-  // Function to update a specific product
-  const updateProduct = (index, newProduct) => {
-    const har = products
-    har[index] = newProduct
-    setProducts(har)
-    //setProducts(products.map((product, i) => (i === index ? newProduct : product)));
-  };
 
   function Content() {
     return (
@@ -55,40 +48,47 @@ function App() {
 
   const toggleLeaderboard = () => {
     setLeaderboard(prev => !prev);
-    setDesc()
   };
 
-  async function getImage(imageName,place,value) {
-    const resp = await fetch("http://127.0.0.1:5001/getImage?name="+imageName, {}).then(response => response.json());
-    updateProduct(place,{image:resp['image'],score:value["score"],description:value["description"],name:value['name']});
-    console.log(products)
-  }
   
-  function setDesc() {
-    fetch("http://127.0.0.1:5001/getItem?place=0", {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then(response => response.json()).then(data => {
-      for(var i = 0; i < data['products'].length; i++) {
-        const product = data['products'][i]
-        updateProduct(i,{image:"",name: product['name'], score: product['score'], description : product['description']}); 
-        getImage(product['name'],i,product);
+  useEffect(() => {
+    function updateProduct(index, newProduct) {
+      const har = products
+      har[index] = newProduct
+      setProducts(har)
+    };
+  
+    async function getLeaderboard() {
+      const x = await fetch("http://127.0.0.1:5001/getItem?place=0").then(response => response.json());
+      for(var i = 0; i < x['products'].length; i++) {
+        const product = x['products'][i]
+        const image = await fetch("http://127.0.0.1:5001/getImage?name="+product['name']).then(response => response.json());
+        updateProduct(i,{image:image['image'],name: product['name'], score: product['score'], description : product['description']}); 
       }
-    });
-  }
+      console.log(x)
+    }
+    getLeaderboard()
+    }, [products,setProducts]);
+  // function setDesc() {
+  //   fetch("http://127.0.0.1:5001/getItem?place=0", {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   }).then(response => response.json()).then(data => {
+  //     for(var i = 0; i < data['products'].length; i++) {
+  //       const product = data['products'][i]
+  //       updateProduct(i,{image:"",name: product['name'], score: product['score'], description : product['description']}); 
+  //       getImage(product['name'],i,product);
+  //     }
+  //   });
+  // }
+  // async function getImage(imageName,place,value) {
+  //   const resp = await fetch("http://127.0.0.1:5001/getImage?name="+imageName, {}).then(response => response.json());
+  //   updateProduct(place,{image:resp['image'],score:value["score"],description:value["description"],name:value['name']});
+  //   console.log(products)
+  // }
 
-  // const response = await fetch("http://127.0.0.1:5001/getItem?place="+"0", {}).then(response => response.json());
-  //   for(var i = 0; i < 3; i++) {
-  //     const product = response['products'][i]
-  //     updateProduct(i,{image:"",
-  //                      name: product['name'], 
-  //                      score: product['score'], 
-  //                      description : product['description']}); 
-  //     getImage(product[i]['name'],i);
-
-  //   }
 
   return (
     <div className="h-screen w-screen bg-alt flex flex-col overflow-hidden">
@@ -115,6 +115,7 @@ function App() {
         </div>
       </div>
     )}
+    
     {leaderboard && (
       <div className="absolute h-full w-full bg-primary bg-opacity-75 rounded p-2 z-20 
         flex justify-center items-center">
