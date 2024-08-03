@@ -33,7 +33,7 @@ def login(): #{username:<>,password:<>}
 
 #cap HAR HAR HAR HAR HAR HAR AHR HAR HAR HAR HAR HAR
 @app.route("/upload", methods=["POST"])
-def getImage():  # {image:<actualImage>}
+def putProductImage():  # {image:<actualImage>}
     base64_string = request.get_json()["image"]
     output = json.loads(utils.openaiRequest(base64_string, os.getenv("PROMPT")))
     value = list(output.values())
@@ -44,24 +44,37 @@ def getImage():  # {image:<actualImage>}
         utils.storeImage(output["name"])
     return jsonify(output), 200
 
-# @app.route("/getItem/<place>",methods=['GET'])
-# #place - the first item
-# #place = 0 -> 0th to 10th item
-# #place = 1 -> 11th item to 20th item
-# #place = 2 -> 21st to 30th item etc...
-# def getItem(place):
-#     #do sql majik to get top things
-#     return jsonify({"1":{"name":"freddy fazbear","score":69,"description":["har","har","har"]}})
+@app.route("/getItem",methods=['GET'])
+#place - the first item
+#place = 0 -> 0th to 9th item
+#place = 1 -> 10th item to 19th item
+#place = 2 -> 20th to 29th item etc...
+# [(a, b, c), (a,b,c)]
 
-# @app.route("/getImage/<name>",methods=['GET'])
-# def getImage(name):
-#     name += ".txt"
-#     files = os.listdir(r"backend")
-#     for f in files:
-#         if(name == f):
-#             with open(os.path.join(r"images",name),"r") as file:
-#                 return jsonify({"image":file.read()}), 200
-#     return 400
+def getItem():
+    place = request.args.get("place")
+    place = int(place)
+    har = utils.sqlSelectByPlace() #gets correct hars
+    if(place*10 >= len(har)):
+        return jsonify({"status":"done"}), 200
+    har = har[place*10:min(place*10+10,len(har))]
+    #do sql majik to get top things
+    output = {"products":[]}
+    for k in har:
+        output["products"].append({"name":k[0],"score":k[1],"description":k[2]})
+    return jsonify(output), 200
+
+@app.route("/getImage",methods=['GET'])
+def getImage():
+    name = request.args.get("name") + ".txt"
+    files = os.listdir(r"backend")
+
+    for f in files:
+        if(name == f):
+            with open(os.path.join(r"images",name),"r") as file:
+                return jsonify({"image":file.read()}), 200
+    return jsonify({"image":"has"}), 200
+
 if __name__ == "__main__":
     utils.sqlInit()
     app.run("127.0.0.1", 5001)
