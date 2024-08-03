@@ -17,16 +17,21 @@ url = "localhost:5000"
 #cap HAR HAR HAR HAR HAR HAR AHR HAR HAR HAR HAR HAR
 @app.route("/upload", methods=["POST"])
 def putProductImage():  # {image:<actualImage>}
+    print("upload event triggered")
     base64_string = request.get_json()["image"]
     output = json.loads(utils.openaiRequest(base64_string, os.getenv("PROMPT")))
     value = list(output.values())
     value[-1] = " ".join(value[-1])
     isDupe = json.loads(utils.checkDuplicate(value[0])).get("exists")
     if not isDupe:
-        if(value[0].lower() != "unkown product"):
+        print(value[0].lower())
+        if(value[0].lower().replace(" ", "") != "unknownproduct"):
             utils.sqlInsert("products", list(output.keys()), value)
             utils.storeImage(output["name"])
-        return jsonify(output), 200
+            return jsonify(output), 200
+        else:
+            print("unknown product!")
+            return jsonify({"error":"Unknown product"}), 200
     else:
         print("duplicate!")
         return jsonify({"error":"Duplicate item"}), 200
