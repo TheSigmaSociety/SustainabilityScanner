@@ -18,7 +18,7 @@ def openaiRequest(imagePath, prompt):
         "Authorization": f"Bearer {os.getenv('KEY')}",
     }
     payload = {
-        "model": "gpt-4o-mini",
+        "model": "gpt-4o",
         "response_format": {"type": "json_object"},
         "messages": [
             {
