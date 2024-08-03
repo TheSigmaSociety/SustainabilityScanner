@@ -149,7 +149,7 @@ function App() {
           </div>
           <div className = "flex flex-col bg-gray-300 w-full h-full rounded">
             <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-              {products[0] && <LbItem name={products[0]["name"]} ranking={products[0]["score"]}/>}
+              {products[0] && <LbItem name={products[0]["name"]} ranking={products[0]["score"]} image = {products[0]["image"]}/>}
               {products[1] && <LbItem name={products[1]["name"]} ranking={products[1]["score"]}/>}
               {products[2] && <LbItem name={products[2]["name"]} ranking={products[2]["score"]}/>}
             </div>
@@ -180,7 +180,7 @@ function App() {
 function LbItem( { color = "alt", image, name = "placeholder", ranking = "0/10", isVisible = true } ) {
   return (
     <div className={`bg-${color} w-1/3 h-full mx-2 flex items-center justify-center text-center flex-col duration-500 hover:scale-105`}>
-      <img className = "w-1/2 h-auto" ref={image} alt="img"/> 
+      <img className = "w-1/2 h-auto" src={image} alt="img"/> 
       <p>{ name }</p>
       <p>{ ranking }</p>
     </div>

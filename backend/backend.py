@@ -21,11 +21,17 @@ def putProductImage():  # {image:<actualImage>}
     output = json.loads(utils.openaiRequest(base64_string, os.getenv("PROMPT")))
     value = list(output.values())
     value[-1] = " ".join(value[-1])
-    utils.sqlInsert("products", list(output.keys()), value)
-    #print(output)
-    if(output['name'] != "Unkown Product"):
-        utils.storeImage(output["name"])
-    return jsonify(output), 200
+    isDupe = json.loads(utils.checkDuplicate(value[0])).get("exists")
+    if not isDupe:
+        utils.sqlInsert("products", list(output.keys()), value)
+        #print(output)
+        if(output['name'] != "Unkown Product"):
+            utils.storeImage(output["name"])
+        
+        return jsonify(output), 200
+    else:
+        print("duplicate!")
+        return jsonify({"error":"Duplicate item"}), 200
 
 @app.route("/getItem",methods=['GET'])
 #place - the first item
@@ -48,11 +54,9 @@ def getItem():
 @app.route("/getImage",methods=['GET'])
 def getImage():
     name = request.args.get("name") + ".txt"
-    files = os.listdir(r"backend")
-    print(files)
+    files = os.listdir(r"images")
     for f in files:
-        print(name)
-        print(f)
+
         if(name == f):
             with open(os.path.join(r"images",name),"r") as file:
                 return jsonify({"image":file.read()}), 200
