@@ -21,10 +21,10 @@ function App() {
   function Content() {
     return (
       <div className="flex flex-col flex-grow relative overflow-hidden">
-        <div className="flex justify-center flex-grow mt-2 relative z-10">
-          <div className="w-4/5 text-right">
-            <h1 className="text-4xl font-title2 font-bold text-primary">A Sustainable Way to Shop</h1>
-            <p className="text-lg text-primary pt-6 ml-16">
+        <div className="flex justify-center lg:items-center flex-grow mt-2 relative z-10">
+          <div className="w-4/5 text-right lg:text-center lg:w-full">
+            <h1 className="text-4xl font-title2 font-bold text-primary lg:text-6xl">A Sustainable Way to Shop</h1>
+            <p className="text-lg text-primary pt-6 ml-16 lg:ml-0 lg:text-xl">
               Scan your groceries and find products with a lower environmental impact.
             </p>
           </div>
@@ -35,7 +35,7 @@ function App() {
             <img className="w-auto h-auto transform scale-50 md:scale-100 -rotate-200" src='/leaf7.png' alt="Leaf" />
           </div>
           
-          <div className="absolute bottom-0 -left-48 p-4">
+          <div className="absolute bottom-0 -left-56 p-4">
             <img className="w-auto h-auto transform scale-50 md:scale-100 rotate-30" src='/leaf11.png' alt="Leaf" />
           </div>
   
@@ -78,7 +78,7 @@ function App() {
       }
     });
   }
-  
+
   // const response = await fetch("http://127.0.0.1:5001/getItem?place="+"0", {}).then(response => response.json());
   //   for(var i = 0; i < 3; i++) {
   //     const product = response['products'][i]
@@ -166,8 +166,8 @@ function LbItem( { color = "bg-alt", image, name = "placeholder", ranking = "0/1
   return (
     <div className={`${color} w-1/3 h-full mx-2 flex items-center justify-center text-center flex-col duration-500 
     hover:w-full hover:flex-row rounded-md p-2`}>
-      <img className = "w-1/2 h-full rounded-md" src={image} alt="img"/>
-      <div className = "flex flex-col">
+      <img className = "w-1/2 h-full rounded-md object-cover" src={image} alt="img"/>
+      <div className = "flex flex-col text-center">
         <p>{ name }</p>
         <p className = "font-black text-xl">{ ranking }/10</p>
       </div>
