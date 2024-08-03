@@ -7,10 +7,8 @@ load_dotenv()
 
 # utils.sqlInit()
 # print(len(utils.encodeBase64(r"backend\images\carrot.png")))
-utils.sqlInsert("users", ["username", "score"], ["Freddy fazbear", 69])
-utils.sqlInsert("products", ["name", "score", "description"], ["freddy's signature cheese pizza", 69, "ishan sHARma"])
+# utils.sqlInsert("users", ["username", "score"], ["Freddy fazbear", 69])
+# utils.sqlInsert("products", ["name", "score", "description"], ["freddy's signature cheese pizza", 69, "ishan sHARma"])
+print(utils.checkDuplicate("freddy fazbear's har industries"))
 
 
-
-# utils.downloadImage("carrot", limit=1, filename="carrot.png")
-#limeLigth

@@ -14,23 +14,6 @@ load_dotenv()
 
 url = "localhost:5000"
 
-
-@app.route("/login", methods=["POST"])
-def login(): #{username:<>,password:<>}
-    data = request.get_json()
-    username = data.get("username")
-    password = data.get("password")
-
-    if not username or not password:
-        return jsonify({"error": "uname and password are req"}), 400
-
-    # userData = get_user_data()
-
-    # if username in userData and userData[username]['password'] == password:
-    #     return jsonify({"message": "Logged in"}), 200
-    # else:
-    #     return jsonify({"error": "wrong username or password"}), 401
-
 #cap HAR HAR HAR HAR HAR HAR AHR HAR HAR HAR HAR HAR
 @app.route("/upload", methods=["POST"])
 def putProductImage():  # {image:<actualImage>}
@@ -50,7 +33,6 @@ def putProductImage():  # {image:<actualImage>}
 #place = 1 -> 10th item to 19th item
 #place = 2 -> 20th to 29th item etc...
 # [(a, b, c), (a,b,c)]
-
 def getItem():
     place = request.args.get("place")
     place = int(place)
@@ -58,7 +40,6 @@ def getItem():
     if(place*10 >= len(har)):
         return jsonify({"status":"done"}), 200
     har = har[place*10:min(place*10+10,len(har))]
-    #do sql majik to get top things
     output = {"products":[]}
     for k in har:
         output["products"].append({"name":k[0],"score":k[1],"description":k[2]})
@@ -68,8 +49,10 @@ def getItem():
 def getImage():
     name = request.args.get("name") + ".txt"
     files = os.listdir(r"backend")
-
+    print(files)
     for f in files:
+        print(name)
+        print(f)
         if(name == f):
             with open(os.path.join(r"images",name),"r") as file:
                 return jsonify({"image":file.read()}), 200

@@ -59,7 +59,7 @@ function App() {
 
   async function getImage(imageName,place,value) {
     const resp = await fetch("http://127.0.0.1:5001/getImage?name="+imageName, {}).then(response => response.json());
-    updateProduct(place,{image:resp,score:value["score"],description:value["description"]});
+    updateProduct(place,{image:resp['image'],score:value["score"],description:value["description"],name:value['name']});
     console.log(products)
   }
   
@@ -70,7 +70,7 @@ function App() {
         'Content-Type': 'application/json',
       },
     }).then(response => response.json()).then(data => {
-      for(var i = 0; i < 9; i++) {
+      for(var i = 0; i < data['products'].length; i++) {
         const product = data['products'][i]
         updateProduct(i,{image:"",name: product['name'], score: product['score'], description : product['description']}); 
         getImage(product['name'],i,product);
@@ -149,19 +149,19 @@ function App() {
           </div>
           <div className = "flex flex-col bg-gray-300 w-full h-full rounded">
             <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-              <LbItem color="secondary" name={"first"}/>
-              <LbItem />
-              <LbItem />
+              {products[0] && <LbItem name={products[0]["name"]} ranking={products[0]["score"]}/>}
+              {products[1] && <LbItem name={products[1]["name"]} ranking={products[1]["score"]}/>}
+              {products[2] && <LbItem name={products[2]["name"]} ranking={products[2]["score"]}/>}
             </div>
             <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-              <LbItem />
-              <LbItem />
-              <LbItem />
+            {products[3] && <LbItem name={products[3]["name"]} ranking={products[3]["score"]}/>}
+            {products[4] && <LbItem name={products[4]["name"]} ranking={products[4]["score"]}/>}
+            {products[5] && <LbItem name={products[5]["name"]} ranking={products[5]["score"]}/>}
             </div>
             <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-              <LbItem />
-              <LbItem />
-              <LbItem />
+            {products[6] && <LbItem name={products[6]["name"]} ranking={products[6]["score"]}/>}
+            {products[7] && <LbItem name={products[7]["name"]} ranking={products[7]["score"]}/>}
+            {products[8] && <LbItem name={products[8]["name"]} ranking={products[8]["score"]}/>}
             </div>
           </div>
         </div>
