@@ -51,9 +51,9 @@ const CameraComponent = () => {
       }).then(response => response.json()).then(data => {
         console.log(data);
         // const tempStr = "name: " + data["name"] + document.write("<br>") + "score: " + data["score"] + "/10" + " "+ "the reason: " + data["description"];
-        const tempStr = "name: " + data["name"] + "<br>" + 
-                "score: " + data["score"] + "/10" + "<br>" + 
-                "the reason: " + data["description"] + "<br>";
+        const tempStr = "Name: " + data["name"] + "\n " + 
+                "Score: " + data["score"] + "/10" + "\n " + 
+                "the reason: " + data["description"] + "\n";
         outputFunc(tempStr)
       }).catch((error) => {console.error('Error:', error);});
     }
