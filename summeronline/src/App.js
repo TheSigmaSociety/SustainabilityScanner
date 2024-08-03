@@ -166,8 +166,8 @@ function LbItem( { color = "bg-alt", image, name = "placeholder", ranking = "0/1
   return (
     <div className={`${color} w-1/3 h-full mx-2 flex items-center justify-center text-center flex-col duration-500 
     hover:w-full hover:flex-row rounded-md p-2`}>
-      <img className = "w-1/2 h-full rounded-md object-cover" src={image} alt="img"/>
-      <div className = "flex flex-col text-center">
+      <img className = "w-3/4 h-full rounded-md object-cover" src={image} alt="img"/>
+      <div className = "flex flex-col text-center p-2">
         <p>{ name }</p>
         <p className = "font-black text-xl">{ ranking }/10</p>
       </div>
