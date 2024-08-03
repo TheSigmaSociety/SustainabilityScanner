@@ -48,6 +48,7 @@ function App() {
   
   const [popup, setPopup] = useState(false);
   const [leaderboard, setLeaderboard] = useState(false);
+  const [help, setHelp] = useState(false); //this
 
   const togglePopup = () => {
     setPopup(prev => !prev);
@@ -56,6 +57,10 @@ function App() {
   const toggleLeaderboard = () => {
     setLeaderboard(prev => !prev);
     setDesc()
+  };
+
+  const toggleHelp = () => { //this
+    setHelp(prev => !prev);
   };
 
   async function getImage(imageName,place,value) {
@@ -79,20 +84,11 @@ function App() {
     });
   }
 
-  // const response = await fetch("http://127.0.0.1:5001/getItem?place="+"0", {}).then(response => response.json());
-  //   for(var i = 0; i < 3; i++) {
-  //     const product = response['products'][i]
-  //     updateProduct(i,{image:"",
-  //                      name: product['name'], 
-  //                      score: product['score'], 
-  //                      description : product['description']}); 
-  //     getImage(product[i]['name'],i);
-
-  //   }
-
   return (
     <div className="h-screen w-screen bg-alt flex flex-col overflow-hidden">
       <Header />
+
+
 
       {popup && (
       <div className="absolute h-full w-full bg-primary bg-opacity-75 rounded p-2 z-20 flex justify-center items-center">
@@ -115,6 +111,9 @@ function App() {
         </div>
       </div>
     )}
+
+
+
     {leaderboard && (
       <div className="absolute h-full w-full bg-primary bg-opacity-75 rounded p-2 z-20 
         flex justify-center items-center">
@@ -152,15 +151,60 @@ function App() {
         </div>
       </div>
     )}
+
+
+
+
+    {help && (
+      <div className="absolute h-full w-full bg-primary bg-opacity-75 rounded p-2 z-20 flex justify-center items-center">
+        <div className="flex flex-col relative w-full max-w-lg items-center bg-alt pt-5 rounded-md p-2 max-h-screen overflow-auto">
+          <svg 
+              onClick={toggleHelp} 
+              xmlns="http://www.w3.org/2000/svg" 
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="red"
+              className="absolute top-2 right-2 w-6 h-6 cursor-pointer">
+
+              <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+            <h1 className="text-center font-title text-3xl mt-2">How to use</h1>  
+            <br></br>     
+            <p className="text-center font-content text-xl">
+              Step 1: Click the "Take A Picture" button on the home page
+              <br></br><br></br>
+              Step 2: If the website asks for permission to use your camera, click "Allow"
+              <br></br><br></br>
+              Step 3: Point your camera at the item you want to check
+              <br></br><br></br>
+              Step 4: Click the button to take a picture
+              <br></br><br></br>
+              Step 5: Click the green check mark to confirm the picture
+              <br></br><br></br>
+              Step 6: Wait for the website to process the image
+              <br></br><br></br>
+              Shortly after, you will recieve information about your item! You can also view the leaderboard tab to see the most sustainable items that users submitted.
+            </p> 
+          </div>
+      </div>
+    )}
+
+
+
+
       <main className="flex flex-col flex-grow">
         <Content />
       </main>
-      <Footer togglePopup={togglePopup} toggleLeaderboard={toggleLeaderboard} />
+      <Footer toggleHelp={toggleHelp} togglePopup={togglePopup} toggleLeaderboard={toggleLeaderboard} />
     </div>
+
+
+
+
   );
 
 }
-
 
 function LbItem( { color = "bg-alt", image, name = "placeholder", ranking = "0/10", isVisible = true } ) {
   return (
@@ -174,7 +218,6 @@ function LbItem( { color = "bg-alt", image, name = "placeholder", ranking = "0/1
     </div>
   );
 }
-
 
 function Header() {
   return (
@@ -191,15 +234,15 @@ function Header() {
   );
 }
 
-
-
-function Footer({ togglePopup, toggleLeaderboard }) {
+function Footer({ togglePopup, toggleLeaderboard, toggleHelp }) {
   return (
+
     <div className="bg-third w-screen h-16 flex items-center justify-center z-10">
       <section className="relative flex items-center justify-center w-full h-full">
         <div className = "flex items-center justify-center flex-col">
+
           {/* The leaderboard Button */}
-          <div onClick={toggleLeaderboard} className = "absolute left-5 border-secondary border-4 rounded-xl px-1">
+          <div onClick={toggleLeaderboard} className = "absolute left-5">
             <svg 
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -213,6 +256,7 @@ function Footer({ togglePopup, toggleLeaderboard }) {
             <p className="text-sm">Leaderboard!</p>
           </div>
         </div>
+
         {/* The Camera Button */}
         <div onClick={togglePopup} className="bg-third h-24 w-24 rounded-full flex items-center justify-center -translate-y-4 flex-col cursor-pointer">
           <svg
@@ -225,8 +269,25 @@ function Footer({ togglePopup, toggleLeaderboard }) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z" />
           </svg>
+
           <p className="w-40 translate-x-7">Take a Picture!</p>
         </div>
+
+        {/* The Help Button */}
+        <div onClick={toggleHelp} className = "absolute right-5">
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            fill="none" viewBox="0 0 24 24" 
+            stroke-width="1.5" 
+            stroke="currentColor" 
+            class="size-9"
+          >
+      
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+        </svg>
+            <p className="text-sm translate-x-1">Help</p>
+        </div>
+
       </section>
     </div>
   );
