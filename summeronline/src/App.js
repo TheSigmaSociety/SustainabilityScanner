@@ -149,19 +149,19 @@ function App() {
           </div>
           <div className = "flex flex-col bg-gray-300 w-full h-full rounded">
             <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-              {products[0] && <LbItem name={products[0]["name"]} ranking={products[0]["score"]} image = {products[0]["image"]} color = "bg-yellow-500"/>}
-              {products[1] && <LbItem name={products[1]["name"]} ranking={products[1]["score"]} color = "bg-gray-400"/>}
-              {products[2] && <LbItem name={products[2]["name"]} ranking={products[2]["score"]} color = "bg-orange-400"/>}
+              {products[0] && <LbItem name={products[0]["name"]} ranking={products[0]["score"]} image = {products[0]["image"]}/>}
+              {products[1] && <LbItem name={products[1]["name"]} ranking={products[1]["score"]} image = {products[1]["image"]} color = "bg-gray-400"/>}
+              {products[2] && <LbItem name={products[2]["name"]} ranking={products[2]["score"]} image = {products[2]["image"]} color = "bg-orange-400"/>}
             </div>
             <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-            {products[3] && <LbItem name={products[3]["name"]} ranking={products[3]["score"]}/>}
-            {products[4] && <LbItem name={products[4]["name"]} ranking={products[4]["score"]}/>}
-            {products[5] && <LbItem name={products[5]["name"]} ranking={products[5]["score"]}/>}
+            {products[3] && <LbItem name={products[3]["name"]} ranking={products[3]["score"]} image = {products[3]["image"]}/>}
+            {products[4] && <LbItem name={products[4]["name"]} ranking={products[4]["score"]} image = {products[4]["image"]}/>}
+            {products[5] && <LbItem name={products[5]["name"]} ranking={products[5]["score"]} image = {products[5]["image"]}/>}
             </div>
             <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-            {products[6] && <LbItem name={products[6]["name"]} ranking={products[6]["score"]}/>}
-            {products[7] && <LbItem name={products[7]["name"]} ranking={products[7]["score"]}/>}
-            {products[8] && <LbItem name={products[8]["name"]} ranking={products[8]["score"]}/>}
+            {products[6] && <LbItem name={products[6]["name"]} ranking={products[6]["score"]} image = {products[6]["image"]}/>}
+            {products[7] && <LbItem name={products[7]["name"]} ranking={products[7]["score"]} image = {products[7]["image"]}/>}
+            {products[8] && <LbItem name={products[8]["name"]} ranking={products[8]["score"]} image = {products[8]["image"]}/>}
             </div>
           </div>
         </div>
