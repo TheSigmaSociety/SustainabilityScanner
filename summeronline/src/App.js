@@ -60,7 +60,7 @@
 
     async function getImage(imageName,place,value) {
       const resp = await fetch("http://127.0.0.1:5001/getImage?name="+imageName, {}).then(response => response.json());
-      updateProduct(place,{image:resp,score:value["score"],description:value["description"]});
+      updateProduct(place,{image:resp['image'],score:value["score"],description:value["description"],name:value['name']});
       console.log(products)
     }
     
@@ -71,7 +71,7 @@
           'Content-Type': 'application/json',
         },
       }).then(response => response.json()).then(data => {
-        for(var i = 0; i < 9; i++) {
+        for(var i = 0; i < data['products'].length; i++) {
           const product = data['products'][i]
           updateProduct(i,{image:"",name: product['name'], score: product['score'], description : product['description']}); 
           getImage(product['name'],i,product);
@@ -128,52 +128,52 @@
                 stroke="red"
                 className="absolute top-2 right-2 w-6 h-6 cursor-pointer">
 
-                <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-              </svg>
-            <h1 className="text-center font-title text-3xl mt-2">Leaderboard!</h1>
-            <div className="mb-3 w-2/3">
-              <div className="relative mb-4 flex w-full">
-                  <input
-                      type="search"
-                      className="relative text-title2 mt-3 m-0 block flex-auto rounded 
-                        border border-solid border-neutral-300 bg-transparent bg-clip-padding 
-                        px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 
-                        outline-none transition duration-200 ease-in-out focus:z-[3] 
-                        focus:border-primary focus:text-neutral-700 
-                        focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none 
-                        dark:border-neutral-600 dark:text-black-200 dark:placeholder:text-black-200
-                        dark:focus:border-primary"
-                      placeholder="Search"
-                      aria-label="Search"
-                      aria-describedby="button-addon2" />
-              </div>
+              <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+          <h1 className="text-center font-title text-3xl mt-2">Leaderboard!</h1>
+          <div className="mb-3 w-2/3">
+            <div className="relative mb-4 flex w-full">
+                <input
+                    type="search"
+                    className="relative text-title2 mt-3 m-0 block flex-auto rounded 
+                      border border-solid border-neutral-300 bg-transparent bg-clip-padding 
+                      px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 
+                      outline-none transition duration-200 ease-in-out focus:z-[3] 
+                      focus:border-primary focus:text-neutral-700 
+                      focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none 
+                      dark:border-neutral-600 dark:text-black-200 dark:placeholder:text-black-200
+                      dark:focus:border-primary"
+                    placeholder="Search"
+                    aria-label="Search"
+                    aria-describedby="button-addon2" />
             </div>
-            <div className = "flex flex-col bg-gray-300 w-full h-full rounded">
-              <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-                <LbItem color="bg-yellow-500" name={"first"}/>
-                <LbItem color="bg-gray-400"/>
-                <LbItem color="bg-orange-400"/>
-              </div>
-              <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-                <LbItem />
-                <LbItem />
-                <LbItem />
-              </div>
-              <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-                <LbItem />
-                <LbItem />
-                <LbItem />
-              </div>
+          </div>
+          <div className = "flex flex-col bg-gray-300 w-full h-full rounded">
+            <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
+              <LbItem color="secondary" name={"first"}/>
+              <LbItem />
+              <LbItem />
+            </div>
+            <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
+              <LbItem />
+              <LbItem />
+              <LbItem />
+            </div>
+            <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
+              <LbItem />
+              <LbItem />
+              <LbItem />
             </div>
           </div>
         </div>
-      )}
-        <main className="flex flex-col flex-grow">
-          <Content />
-        </main>
-        <Footer togglePopup={togglePopup} toggleLeaderboard={toggleLeaderboard} />
       </div>
-    );
+    )}
+      <main className="flex flex-col flex-grow">
+        <Content />
+      </main>
+      <Footer togglePopup={togglePopup} toggleLeaderboard={toggleLeaderboard} />
+    </div>
+  );
 
   }
 

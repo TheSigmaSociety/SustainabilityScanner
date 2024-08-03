@@ -131,3 +131,42 @@ def sqlSelectByPlace():
     mycursor.close()
     db.close()
     return result
+
+def checkDuplicate(name):
+    db = mysql.connector.connect(
+        host=os.getenv("IP"),   
+        user=os.getenv("DB_USER"),
+        passwd=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+    )
+    mycursor = db.cursor()
+    mycursor.execute("SELECT * FROM products")
+    result = mycursor.fetchall()
+    listOfNames = []
+    for i in result:
+        listOfNames.append(i[0])
+    
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {os.getenv('KEY')}",
+    }
+    payload = {
+        "model": "gpt-4o-mini",
+        "response_format": {"type": "json_object"},
+        "messages": [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": "you will be given a product name. Your task is to check whether this product name already exists in a database of recorded products, and return a JSON of the following format: {\"exists\": true} or {\"exists\": false}. the current product might not have the exact same name as the product in the database, but they should be treated as a duplicate if they are similar enough. The product name is: " + name + ", and the list of recorded products is: " + str(listOfNames)},
+                ],
+            }
+        ],
+        "max_tokens": 200,
+    }
+    response = requests.post(
+        "https://api.openai.com/v1/chat/completions", headers=headers, json=payload
+    )
+    mycursor.close()
+    db.close()
+    return response.json()["choices"][0]["message"]["content"]
+  
