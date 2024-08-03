@@ -95,7 +95,7 @@ def storeImage(name):
 def encodeBase64(imagePath,name):
     with open(imagePath, "rb") as imageFile:
         b64 =  "data:image/jpeg;base64," + base64.b64encode(imageFile.read()).decode("utf-8")
-    createTxt(r"images",name,b64)
+    createTxt(r"backend/images/",name,b64)
     os.remove(imagePath)
 
 def downloadImage(keyword, limit=1, filename="default.jpg"):
@@ -114,7 +114,7 @@ def downloadImage(keyword, limit=1, filename="default.jpg"):
     
 def createTxt(dir, name, content):
     name += ".txt"
-    with open(os.path.join(dir, name), "w") as file:
+    with open(dir+name, "w") as file:
         file.write(content)
     return os.path.join(dir, name)
 

@@ -26,7 +26,7 @@ def putProductImage():  # {image:<actualImage>}
         print(value[0].lower())
         if(value[0].lower().replace(" ", "") != "unknownproduct"):
             utils.sqlInsert("products", list(output.keys()), value)
-            utils.storeImage(output["name"])
+            utils.storeImage(value[0])
             return jsonify(output), 200
         else:
             print("unknown product!")
