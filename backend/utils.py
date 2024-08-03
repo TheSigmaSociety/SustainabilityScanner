@@ -118,4 +118,16 @@ def createTxt(dir, name, content):
         file.write(content)
     return os.path.join(dir, name)
 
-
+def sqlSelectByPlace():
+    db = mysql.connector.connect(
+        host=os.getenv("IP"),   
+        user=os.getenv("DB_USER"),
+        passwd=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+    )
+    mycursor = db.cursor()
+    mycursor.execute("SELECT * FROM products ORDER BY score DESC")
+    result = mycursor.fetchall()
+    mycursor.close()
+    db.close()
+    return result

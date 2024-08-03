@@ -3,7 +3,20 @@ import CameraComponent from './camera';
 import React, { useState } from 'react';
 
 function App() {
+
   const [output, setOutput] = useState(null);
+
+
+  const initialProductState = { image: null, name: null, score: null,description: null};
+  const [products, setProducts] = useState(Array(9).fill(initialProductState));
+  
+  // Function to update a specific product
+  const updateProduct = (index, newProduct) => {
+    const har = products
+    har[index] = newProduct
+    setProducts(har)
+    //setProducts(products.map((product, i) => (i === index ? newProduct : product)));
+  };
   function Content() {
     return (
       <div className="flex flex-col flex-grow relative overflow-hidden">
@@ -30,8 +43,8 @@ function App() {
           </div>
         </div>
       </div>
-    );
-  }
+    );}
+  
   const [popup, setPopup] = useState(false);
   const [leaderboard, setLeaderboard] = useState(false);
 
@@ -41,7 +54,39 @@ function App() {
 
   const toggleLeaderboard = () => {
     setLeaderboard(prev => !prev);
+    setDesc()
   };
+
+  async function getImage(imageName,place,value) {
+    const resp = await fetch("http://127.0.0.1:5001/getImage?name="+imageName, {}).then(response => response.json());
+    updateProduct(place,{image:resp,score:value["score"],description:value["description"]});
+    console.log(products)
+  }
+  
+  function setDesc() {
+    fetch("http://127.0.0.1:5001/getItem?place=0", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(response => response.json()).then(data => {
+      for(var i = 0; i < 9; i++) {
+        const product = data['products'][i]
+        updateProduct(i,{image:"",name: product['name'], score: product['score'], description : product['description']}); 
+        getImage(product['name'],i,product);
+      }
+    });
+  }
+  // const response = await fetch("http://127.0.0.1:5001/getItem?place="+"0", {}).then(response => response.json());
+  //   for(var i = 0; i < 3; i++) {
+  //     const product = response['products'][i]
+  //     updateProduct(i,{image:"",
+  //                      name: product['name'], 
+  //                      score: product['score'], 
+  //                      description : product['description']}); 
+  //     getImage(product[i]['name'],i);
+
+  //   }
 
   return (
     <div className="h-screen w-screen bg-alt flex flex-col overflow-hidden">
@@ -104,7 +149,7 @@ function App() {
           </div>
           <div className = "flex flex-col bg-gray-300 w-full h-full rounded">
             <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-              <LbItem color="secondary" image="leaf2" name={"First Place"}/>
+              <LbItem color="secondary" name={"first"}/>
               <LbItem />
               <LbItem />
             </div>
@@ -128,23 +173,20 @@ function App() {
       <Footer togglePopup={togglePopup} toggleLeaderboard={toggleLeaderboard} />
     </div>
   );
+
 }
 
 
 function LbItem( { color = "alt", image, name = "placeholder", ranking = "0/10", isVisible = true } ) {
   return (
     <div className={`bg-${color} w-1/3 h-full mx-2 flex items-center justify-center text-center flex-col duration-500 hover:scale-105`}>
-      <img className = "w-1/2 h-auto" src={`/${image}.png`} alt="img"/> 
+      <img className = "w-1/2 h-auto" ref={image} alt="img"/> 
       <p>{ name }</p>
       <p>{ ranking }</p>
     </div>
   );
 }
 
-function getImage(items){
-  //ur gay
-  //gay gay gay gayg ya
-}
 
 function Header() {
   return (
@@ -160,7 +202,6 @@ function Header() {
     </div>
   );
 }
-
 
 
 
