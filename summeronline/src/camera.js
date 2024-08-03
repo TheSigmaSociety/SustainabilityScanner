@@ -52,8 +52,8 @@ const CameraComponent = () => {
         console.log(data);
         // const tempStr = "name: " + data["name"] + document.write("<br>") + "score: " + data["score"] + "/10" + " "+ "the reason: " + data["description"];
         const tempStr = "Name: " + data["name"] + "\n " + 
-                "Score: " + data["score"] + "/10" + "\n " + 
-                "the reason: " + data["description"] + "\n";
+                "Sustainability Score: " + data["score"] + "/10" + "\n " + 
+                "Reasoning: " + data["description"] + "\n";
         outputFunc(tempStr)
       }).catch((error) => {console.error('Error:', error);});
     }
@@ -63,7 +63,11 @@ const CameraComponent = () => {
     <div className = "flex flex-col justify-center items-center p-2">
       {photo && <img src={photo}  className='aspect-auto rounded-md'/>}
       {!photo && <video ref={videoRef} autoPlay className='aspect-auto rounded-md'/>}
-      {output && <div className="flex flex-col flex-grow justify-center items-center">{output}</div>}
+      {output && (
+        <div className="flex flex-col flex-grow justify-center items-center">
+          <div className = "whitespace-pre-line pt-2">{output}</div>
+        </div>
+      )}
       <div
         className="flex bottom-0 w-24 items-center justify-center rounded cursor-pointer mt-1 border-black border-3"
         onClick={getSigma}
