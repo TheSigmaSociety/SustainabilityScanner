@@ -43,6 +43,7 @@ const CameraComponent = () => {
       setUpload(""); //submit
       setIsPhotoTaken(true);
     } else {
+      outputFunc("generating..")
       //upload to server
       fetch(UPLOAD_IP, {
         method: 'POST',
