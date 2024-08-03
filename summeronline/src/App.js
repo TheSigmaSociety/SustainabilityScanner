@@ -149,9 +149,9 @@ function App() {
           </div>
           <div className = "flex flex-col bg-gray-300 w-full h-full rounded">
             <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
-              {products[0] && <LbItem name={products[0]["name"]} ranking={products[0]["score"]}/>}
-              {products[1] && <LbItem name={products[1]["name"]} ranking={products[1]["score"]}/>}
-              {products[2] && <LbItem name={products[2]["name"]} ranking={products[2]["score"]}/>}
+              {products[0] && <LbItem name={products[0]["name"]} ranking={products[0]["score"]} color = "bg-yellow-500"/>}
+              {products[1] && <LbItem name={products[1]["name"]} ranking={products[1]["score"]} color = "bg-gray-400"/>}
+              {products[2] && <LbItem name={products[2]["name"]} ranking={products[2]["score"]} color = "bg-orange-400"/>}
             </div>
             <div className = "flex flex-row place-content-between w-full my-2 h-1/3">
             {products[3] && <LbItem name={products[3]["name"]} ranking={products[3]["score"]}/>}
