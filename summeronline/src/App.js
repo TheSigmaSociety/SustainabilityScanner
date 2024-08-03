@@ -17,6 +17,7 @@ function App() {
     setProducts(har)
     //setProducts(products.map((product, i) => (i === index ? newProduct : product)));
   };
+
   function Content() {
     return (
       <div className="flex flex-col flex-grow relative overflow-hidden">
@@ -94,7 +95,7 @@ function App() {
 
       {popup && (
       <div className="absolute h-full w-full bg-primary bg-opacity-75 rounded p-2 z-20 flex justify-center items-center">
-        <div className="flex flex-col relative w-full max-w-lg items-center bg-alt pt-5 rounded-md p-2">
+        <div className="flex flex-col relative w-full max-w-lg items-center bg-alt pt-5 rounded-md p-2 max-h-screen overflow-auto">
           <svg 
               onClick={togglePopup} 
               xmlns="http://www.w3.org/2000/svg" 
