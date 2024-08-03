@@ -56,10 +56,10 @@ def getItem():
 @app.route("/getImage",methods=['GET'])
 def getImage():
     name = request.args.get("name") + ".txt"
-    files = os.listdir(r"backend/images")
+    files = os.listdir(r"images")
     for f in files:
         if(name == f):
-            with open("backend/images/"+name,"r") as file:
+            with open("images/"+name,"r") as file:
                 return jsonify({"image":file.read()}), 200
     return jsonify({"image":"has"}), 200
 
