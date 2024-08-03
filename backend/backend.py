@@ -14,7 +14,6 @@ load_dotenv()
 
 url = "localhost:5000"
 
-#cap HAR HAR HAR HAR HAR HAR AHR HAR HAR HAR HAR HAR
 @app.route("/upload", methods=["POST"])
 def putProductImage():  # {image:<actualImage>}
     print("upload event triggered")

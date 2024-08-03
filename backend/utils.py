@@ -90,7 +90,6 @@ def storeImage(name):
     path = downloadImage(name,filename=name)
     print(path)
     encodeBase64(path,name)
-    return "i am a sigma"
 
 def encodeBase64(imagePath,name):
     with open(imagePath, "rb") as imageFile:
